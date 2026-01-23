@@ -15,6 +15,7 @@ vendor/
 
 # VSCode
 .vscode/
+.history/
 *.code-workspace
 
 # Environment and secrets
