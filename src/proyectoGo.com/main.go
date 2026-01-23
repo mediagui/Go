@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"ejercicios"
+	"fmt"
+)
 
 // Para importar varios paquetes, sepárelos con paréntesis.
 // import (
