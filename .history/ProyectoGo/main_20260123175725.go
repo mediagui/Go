@@ -1,6 +1,11 @@
+module ProyectoGo/ejercicios
+
+go 1.25.6
+
 package main
 
 import (
+	"ProyectoGo/ejercicios"
 	"fmt"
 )
 
@@ -11,13 +16,9 @@ import (
 // )
 
 // La función main es el punto de entrada de un programa Go.
-func MostrarNombre() {
-	fmt.Println("Miguel Angel\nMedina")
-}
-
 func main() {
 	fmt.Println("Hello, World! 🌍")
 	fmt.Println("Miguel Angel\nMedina")
-	MostrarNombre()
+	ejercicios.MostrarNombre()
 
 }
