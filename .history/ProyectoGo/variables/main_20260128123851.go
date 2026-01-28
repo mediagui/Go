@@ -1,0 +1,5 @@
+package variables
+
+func main() {
+
+}
