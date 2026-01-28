@@ -1,4 +1,4 @@
-package variables
+package main
 
 func GetUint8Value() uint8 {
 
