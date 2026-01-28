@@ -15,7 +15,7 @@ import (
 // La función main es el punto de entrada de un programa Go.
 func MostrarNombre() {
 	fmt.Println("Miguel Angel\nMedina")
-	fmt.Println(quote.Go())
+	fmt.Println(quote.Hello())
 }
 
 func main() {
