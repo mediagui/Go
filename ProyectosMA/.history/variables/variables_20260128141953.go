@@ -13,14 +13,13 @@ func TratoVariables() {
 
 	var nombreUno string
 
-	nombreUno = "Manolito1"
+	nombreUno = "\nManolito"
 
 	fmt.Println(nombreUno)
 
 	var nombreDos, apellido1 string
-	nombreDos = "Manolito2"
+	nombreDos = "Manolito"
 	apellido1 = "Gafotas"
 
 	fmt.Println(nombreDos, apellido1)
-
 }
