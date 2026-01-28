@@ -23,15 +23,4 @@ func TratoVariables() {
 
 	fmt.Println(nombreDos, apellido1)
 
-	var (
-		calle, población string
-		cPostal, numero  int16
-	)
-
-	calle = "calle"
-	población = "Madrid"
-	cPostal = 28000
-	numero = 31
-
-	fmt.Println(calle, población, cPostal, numero)
 }
