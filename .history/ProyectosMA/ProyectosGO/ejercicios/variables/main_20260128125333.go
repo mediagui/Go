@@ -1,6 +1,8 @@
-package variables
+package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
 	fmt.Println("uint8", GetUint8Value())

@@ -1,4 +1,4 @@
-package variables
+package ejercicios
 
 func GetUint8Value() uint8 {
 
