@@ -13,7 +13,7 @@ func TratoVariables() {
 
 	var nombreUno string
 
-	nombreUno = "\nMiguel"
+	nombreUno = "Miguel"
 
 	fmt.Println(nombreUno)
 }
