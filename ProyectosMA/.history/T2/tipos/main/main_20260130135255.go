@@ -1,0 +1,29 @@
+package main
+
+import (
+	"fmt"
+	"tipos"
+)
+
+func main() {
+	fmt.Println("Integer Types:")
+	tipos.PrintIntRange("int8", 8, true)
+	tipos.PrintIntRange("uint8", 8, false)
+	tipos.PrintIntRange("int16", 16, true)
+	tipos.PrintIntRange("uint16", 16, false)
+	tipos.PrintIntRange("int32", 32, true)
+	tipos.PrintIntRange("uint32", 32, false)
+	tipos.PrintIntRange("int64", 64, true)
+	tipos.PrintIntRange("uint64", 64, false)
+
+	fmt.Println("\nFloating Types:")
+	tipos.printFloatRange("float32", 32)
+	tipos.printFloatRange("float64", 64)
+
+	fmt.Println("\nOther Info:")
+	fmt.Printf("Type of math.MaxFloat64: %s\n", reflect.TypeOf(math.MaxFloat64))
+
+	fmt.Println("valor: %d. Type %T", any, any)
+
+	fmt.Println("valor: %d. Type %T")
+}
