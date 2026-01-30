@@ -1,9 +1,9 @@
 package products
 
 import (
-	"ProyectosMA/T2/format"
 	"fmt"
 	"math/rand"
+	"strconv"
 	"time"
 )
 
@@ -23,8 +23,7 @@ func PrintProducts() {
 
 	for i, v := range products {
 
-		prize := format.PrintFormattedPrize(v.prize)
-		// prize := strconv.FormatFloat(float64(v.prize), 'f', 2, 32)
+		prize := strconv.FormatFloat(float64(v.prize), 'f', 2, 32)
 
 		fmt.Println(i, "\t", v.name, "\t", prize, "€")
 

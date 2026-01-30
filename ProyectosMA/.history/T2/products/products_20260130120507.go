@@ -3,7 +3,9 @@ package products
 import (
 	"ProyectosMA/T2/format"
 	"fmt"
+	"format"
 	"math/rand"
+	"strconv"
 	"time"
 )
 
