@@ -1,8 +1,8 @@
 package products
 
 import (
-	"ProyectosMA/T2/dto"
-	"ProyectosMA/T2/format"
+	"ProyectosMA/T2/ejercicio3/dto"
+	"ProyectosMA/T2/ejercicio3/format"
 	"fmt"
 	"math/rand"
 	"time"
