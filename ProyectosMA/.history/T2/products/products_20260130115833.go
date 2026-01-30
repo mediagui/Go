@@ -25,7 +25,7 @@ func PrintProducts() {
 
 		prize := strconv.FormatFloat(float64(v.prize), 'f', 2, 32)
 
-		fmt.Println(i, "\t", v.name, "\t", prize, "€")
+		fmt.Println(i, "\t", v.name, "\t", prize, "\t€")
 
 	}
 

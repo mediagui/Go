@@ -23,9 +23,7 @@ func PrintProducts() {
 
 	for i, v := range products {
 
-		prize := strconv.FormatFloat(float64(v.prize), 'f', 2, 32)
-
-		fmt.Println(i, "\t", v.name, "\t", prize, "€")
+		fmt.Println(i, "\t", v.name, "\t", v.prize, "\t€")
 
 	}
 
@@ -46,8 +44,10 @@ func buildRandomProduct(i int) productStruct {
 
 	var product productStruct
 
+	prize := strconv.FormatFloat(float64(generateRandomPrize(i)), 'f', 2, 32)
+
 	product.name = fmt.Sprint("Producto ", i)
-	product.prize = generateRandomPrize(i)
+	product.prize = prize
 
 	return product
 

@@ -3,7 +3,6 @@ package products
 import (
 	"fmt"
 	"math/rand"
-	"strconv"
 	"time"
 )
 
@@ -23,9 +22,7 @@ func PrintProducts() {
 
 	for i, v := range products {
 
-		prize := strconv.FormatFloat(float64(v.prize), 'f', 2, 32)
-
-		fmt.Println(i, "\t", v.name, "\t", prize, "€")
+		fmt.Println(i, "\t", v.name, "\t", v.prize, "\t€")
 
 	}
 
@@ -47,13 +44,13 @@ func buildRandomProduct(i int) productStruct {
 	var product productStruct
 
 	product.name = fmt.Sprint("Producto ", i)
-	product.prize = generateRandomPrize(i)
+	product.prize = fmt.Sprintf("%.2f", generateRandomCost(i))
 
 	return product
 
 }
 
-func generateRandomPrize(costSeed int) float32 {
+func generateRandomCost(costSeed int) float32 {
 
 	// Build the random generator using current time stamp
 	generator := rand.New(rand.NewSource(time.Now().UnixNano()))
