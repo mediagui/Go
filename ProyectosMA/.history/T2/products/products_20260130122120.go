@@ -13,17 +13,16 @@ var (
 	product  dto.ProductStruct
 )
 
-const IVA float32 = 1.21
-
 func PrintProducts() {
 
 	loadProducts()
 
 	for i, v := range products {
 
-		prize := format.PrintFormattedPrize(v.Prize * IVA)
+		prize := format.PrintFormattedPrize(v.prize)
+		// prize := strconv.FormatFloat(float64(v.prize), 'f', 2, 32)
 
-		fmt.Println(i, "\t", v.Name, "\t", prize, "€")
+		fmt.Println(i, "\t", v.name, "\t", prize, "€")
 
 	}
 
@@ -40,12 +39,12 @@ func loadProducts() {
 	}
 }
 
-func buildRandomProduct(i int) dto.ProductStruct {
+func buildRandomProduct(i int) ProductStruct {
 
-	var product dto.ProductStruct
+	var product ProductStruct
 
-	product.Name = fmt.Sprint("Producto ", i)
-	product.Prize = generateRandomPrize(i)
+	product.name = fmt.Sprint("Producto ", i)
+	product.prize = generateRandomPrize(i)
 
 	return product
 

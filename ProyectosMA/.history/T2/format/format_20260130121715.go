@@ -1,7 +1,6 @@
 package format
 
 import (
-	"ProyectosMA/T2/dto"
 	"fmt"
 	"strconv"
 )
@@ -14,4 +13,4 @@ func PrintFormattedPrize(prize float32) string {
 	return strconv.FormatFloat(float64(prize), 'f', 2, 32)
 }
 
-func PrintInvoiceLine(line dto.ProductStruct) {}
+func PrintInvoiceLine(line productStruct) {}
