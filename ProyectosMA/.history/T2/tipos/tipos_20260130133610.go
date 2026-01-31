@@ -1,0 +1,5 @@
+package tipos
+
+func ShowBasicDatatypes() {
+
+}
