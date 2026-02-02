@@ -12,12 +12,12 @@ func main() {
 func leftShift(num int) {
 
 	numCuad := num << 1
-	fmt.Printf("Desplazamos 1 bit a la izq %v -> %v\n", num, numCuad)
+	fmt.Printf("Elevamos al cuadrado %v -> %v\n", num, numCuad)
 
 }
 func rightShift(num int) {
 
 	numSqr := (num >> 1) - 1
-	fmt.Printf("Desplazamos 1 bit a la dcha %v -> %v\n", num, numSqr)
+	fmt.Printf("Calculamos la raiz cuadrada %v -> %v\n", num, numSqr)
 
 }
