@@ -1,0 +1,5 @@
+package paquetefmt
+
+func Formatfmt() {
+
+}

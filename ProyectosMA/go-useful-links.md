@@ -1,0 +1,10 @@
+# Go useful links
+
+- [The Go Programming Language Specification](https://go.dev/ref/spec)
+- [Golang Documentation](https://go.dev/doc/)
+- [Go package search](https://pkg.go.dev/)
+- [Awesome Go](https://awesome-go.com/)
+- [GoBridge](https://github.com/gobridge/about-us/blob/master/README.md)
+
+
+
