@@ -23,5 +23,5 @@ func rightShift(num int) {
 }
 
 func isEven(num int) bool {
-	return num&1 == 0
+	return num & !num
 }
