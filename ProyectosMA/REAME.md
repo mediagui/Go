@@ -1,88 +1,169 @@
-# 📚 Go Useful Links
+
+# 🐹💙 Go Useful Links / Recursos Útiles de Go
+
+![Go Badge](https://img.shields.io/badge/Language-Go-00ADD8?logo=go&logoColor=white)
+![Gopher Badge](https://img.shields.io/badge/Gopher-Approved-29BEB0?logo=go)
+![Learning Badge](https://img.shields.io/badge/Learning-Active-FFD166)
+![Community Badge](https://img.shields.io/badge/Community-Go%20Dev-118AB2)
 
 Una recopilación curada de recursos esenciales para aprender, profundizar y trabajar con **Go (Golang)**.
-Incluye documentación oficial, herramientas, comunidades, ejemplos prácticos y más.
+Incluye documentación oficial, herramientas, comunidades, ejemplos prácticos y una selección de los mejores blogs del ecosistema Go.
+
+A curated collection of essential resources to learn, master, and work with **Go (Golang)**.
+Includes official documentation, tools, communities, practical examples, and top Go blogs.
 
 ---
 
-## 🏛️ Documentación Oficial
+# 📑📘 Table of Contents / Tabla de Contenidos
+
+- [🐹💙 Go Useful Links / Recursos Útiles de Go](#-go-useful-links--recursos-útiles-de-go)
+- [📑📘 Table of Contents / Tabla de Contenidos](#-table-of-contents--tabla-de-contenidos)
+- [🏛️📜 Official Documentation / Documentación Oficial](#️-official-documentation--documentación-oficial)
+- [🧰🔧 Curated Resources / Recursos Curados](#-curated-resources--recursos-curados)
+- [🧑‍🏫📚 Practical Examples / Ejemplos Prácticos](#-practical-examples--ejemplos-prácticos)
+- [📝✍️ Recommended Blogs / Blogs Recomendados](#️-recommended-blogs--blogs-recomendados)
+  - [🏛️📘 Official \& Ecosystem Blogs](#️-official--ecosystem-blogs)
+  - [🧑‍🏫📖 Tutorials \& Structured Learning](#-tutorials--structured-learning)
+  - [📝🧠 Personal Technical Blogs](#-personal-technical-blogs)
+  - [🧪🏭 Engineering \& Company Blogs](#-engineering--company-blogs)
+  - [🌍🗺️ Communities \& Article Platforms](#️-communities--article-platforms)
+- [🎥📺 Bonus: Video Content](#-bonus-video-content)
+- [🤝🐹 Contributing](#-contributing)
+- [📜⚖️ License](#️-license)
+
+---
+
+# 🏛️📜 Official Documentation / Documentación Oficial
+
+<details>
+<summary><strong>🐹 Mostrar / Show</strong></summary>
 
 - [The Go Programming Language Specification](https://go.dev/ref/spec)
-  Especificación formal del lenguaje Go.
-
 - [Golang Documentation](https://go.dev/doc/)
-  Documentación oficial, guías, tutoriales y referencias.
-
 - [Go package search](https://pkg.go.dev/)
-  Buscador oficial de paquetes y documentación generada automáticamente.
+
+</details>
 
 ---
 
-## 🧰 Recursos y Colecciones Curadas
+# 🧰🔧 Curated Resources / Recursos Curados
+
+<details>
+<summary><strong>🐹 Mostrar / Show</strong></summary>
 
 - [Awesome Go](https://awesome-go.com/)
-  Colección mantenida por la comunidad con cientos de librerías, herramientas y recursos.
-
 - [GoBridge](https://github.com/gobridge/about-us/blob/master/README.md)
-  Organización que promueve la diversidad y educación en la comunidad Go.
+
+</details>
 
 ---
 
-## 🧑‍🏫 Ejemplos y Tutoriales Prácticos
+# 🧑‍🏫📚 Practical Examples / Ejemplos Prácticos
+
+<details>
+<summary><strong>🐹 Mostrar / Show</strong></summary>
 
 - [Go Web Examples](https://gowebexamples.com/)
-  Ejemplos claros y concisos para aprender desarrollo web con Go.
+
+</details>
 
 ---
 
-## 📝 Blogs y Artículos Recomendados (de la página abierta)
+# 📝✍️ Recommended Blogs / Blogs Recomendados
 
-> Estos enlaces provienen de la página que tienes abierta en el navegador, que lista blogs destacados de Go.
-
-### Blogs Oficiales y del Ecosistema
-
-- https://go.dev/blog
-- https://github.com/golang/go/wiki/Articles
-- https://research.swtch.com
-
-### Tutoriales y Aprendizaje Estructurado
-
-- https://gobyexample.com
-- https://gowebexamples.com
-- https://golangbot.com
-- https://tutorialedge.net
-
-### Blogs Técnicos Personales
-
-- https://dave.cheney.net
-- https://eli.thegreenplace.net
-- https://ieftimov.com
-- https://utcc.utoronto.ca/~cks/space/blog
-- https://scene-si.org
-
-### Blogs de Ingeniería y Empresas
-
-- https://www.ardanlabs.com/blog
-- https://www.gopherguides.com/blog
-- https://appliedgo.net
-
-### Comunidades y Plataformas de Artículos
-
-- https://dev.to/t/go
-- https://www.digitalocean.com/community/tags/go
-- https://hashnode.com/n/go
-- https://itnext.io
-- https://blog.gopheracademy.com
+> Selección basada en los mejores blogs de Go listados en tu navegación.
+> Selection based on top Go blogs referenced in your browsing.
 
 ---
 
-## 🤝 Contribuciones
+## 🏛️📘 Official & Ecosystem Blogs
 
-Si quieres añadir más recursos, abre un **pull request** o crea un **issue**.
-Toda sugerencia es bienvenida.
+<details>
+<summary><strong>🐹 Mostrar / Show</strong></summary>
+
+- <https://go.dev/blog>
+- <https://github.com/golang/go/wiki/Articles>
+- <https://research.swtch.com>
+
+</details>
 
 ---
 
-## 📜 Licencia
+## 🧑‍🏫📖 Tutorials & Structured Learning
 
-Este repositorio se distribuye bajo la licencia MIT.
+<details>
+<summary><strong>🐹 Mostrar / Show</strong></summary>
+
+- <https://gobyexample.com>
+- <https://gowebexamples.com>
+- <https://golangbot.com>
+- <https://tutorialedge.net>
+
+</details>
+
+---
+
+## 📝🧠 Personal Technical Blogs
+
+<details>
+<summary><strong>🐹 Mostrar / Show</strong></summary>
+
+- <https://dave.cheney.net>
+- <https://eli.thegreenplace.net>
+- <https://ieftimov.com>
+- <https://utcc.utoronto.ca/~cks/space/blog>
+- <https://scene-si.org>
+
+</details>
+
+---
+
+## 🧪🏭 Engineering & Company Blogs
+
+<details>
+<summary><strong>🐹 Mostrar / Show</strong></summary>
+
+- <https://www.ardanlabs.com/blog>
+- <https://www.gopherguides.com/blog>
+- <https://appliedgo.net>
+
+</details>
+
+---
+
+## 🌍🗺️ Communities & Article Platforms
+
+<details>
+<summary><strong>🐹 Mostrar / Show</strong></summary>
+
+- <https://dev.to/t/go>
+- <https://www.digitalocean.com/community/tags/go>
+- <https://hashnode.com/n/go>
+- <https://itnext.io>
+- <https://blog.gopheracademy.com>
+
+</details>
+
+---
+
+# 🎥📺 Bonus: Video Content
+
+<details>
+<summary><strong>🐹 Mostrar / Show</strong></summary>
+
+- [Code & Learn (YouTube)](https://www.youtube.com/@codeandlearnnow)
+
+</details>
+
+---
+
+# 🤝🐹 Contributing
+
+Contributions are welcome.
+Feel free to open a **pull request** or create an **issue**.
+
+---
+
+# 📜⚖️ License
+
+This repository is distributed under the MIT License.
