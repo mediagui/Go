@@ -28,7 +28,7 @@ func main() {
 
 	another := "Y"
 
-	for another == "Y" || another == "y" {
+	for another == "Y" {
 
 		triangleCalculation()
 

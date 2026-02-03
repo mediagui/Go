@@ -27,13 +27,18 @@ import (
 func main() {
 
 	another := "Y"
+	var cmd *exec.Cmd
+	cmd = exec.Command("cmd", "/c", "cls")
 
-	for another == "Y" || another == "y" {
+	for another == "Y" {
 
 		triangleCalculation()
 
 		fmt.Print("\nOther calculation? [y/N]")
 		fmt.Scanln(&another)
+
+		// En Windows se usa "cls"
+		cmd.Run()
 
 	}
 
