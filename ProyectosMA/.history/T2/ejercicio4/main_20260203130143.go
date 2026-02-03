@@ -29,9 +29,6 @@ func main() {
 
 	for another == "Y" || another == "y" {
 
-		//Borra la consola
-		fmt.Print("\033[H\033[2J")
-
 		triangleCalculation()
 
 		fmt.Print("\nOther calculation? [y/N]")
@@ -72,10 +69,11 @@ func requestData() (float64, float64) {
 
 }
 
-func requestSide(cateto float64) float64 {
+func requestSide() float64 {
+	var cateto float64
 
 	fmt.Print("Cateto: ")
-	fmt.Scanln(&cateto)
+	fmt.Scanln(cateto)
 	return cateto
 }
 

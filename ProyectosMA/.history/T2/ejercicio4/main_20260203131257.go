@@ -29,7 +29,6 @@ func main() {
 
 	for another == "Y" || another == "y" {
 
-		//Borra la consola
 		fmt.Print("\033[H\033[2J")
 
 		triangleCalculation()
