@@ -2,9 +2,9 @@ package main
 
 import "fmt"
 
-func main() {
+var num int
 
-	var num int
+func main() {
 
 	requestANumber(&num)
 
@@ -38,6 +38,6 @@ func getNumberTranscription(num int) string {
 func requestANumber(num *int) {
 
 	fmt.Print("Give me a number: ")
-	fmt.Scanln(num)
+	fmt.Scanln(&num)
 
 }
