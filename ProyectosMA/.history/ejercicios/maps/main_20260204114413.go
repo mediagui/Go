@@ -5,27 +5,25 @@ import (
 	"time"
 )
 
+var dayOrder int
+
 func main() {
 
-	printWeekdays(getWeekDaysMap())
+	printWeekdays(loadWeekDays())
 
-	weekDayMap := getWeekDaysMap()
-	requestedDay := requestWeekDayFromConsole()
+	weekDay := loadWeekDays()
 
-	printRequestedDayFrom(weekDayMap, requestedDay)
+	requestWeekDay()
+	printRequestedDayFrom(weekDay)
 
 }
 
-func requestWeekDayFromConsole() int {
-
-	var dayOrder int
-
+func requestWeekDay() {
 	fmt.Print("Insert day order: ")
 	fmt.Scanln(&dayOrder)
-	return dayOrder
 }
 
-func getWeekDaysMap() map[int]string {
+func loadWeekDays() map[int]string {
 	weekDay := map[int]string{}
 
 	for i := range 7 {
@@ -47,6 +45,6 @@ func printWeekdays(w map[int]string) {
 
 }
 
-func printRequestedDayFrom(w map[int]string, dayOrder int) {
+func printRequestedDayFrom(w map[int]string) {
 	println(w[dayOrder])
 }

@@ -12,7 +12,7 @@ func main() {
 	weekDayMap := getWeekDaysMap()
 	requestedDay := requestWeekDayFromConsole()
 
-	printRequestedDayFrom(weekDayMap, requestedDay)
+	printRequestedDayFrom(requestedDay, weekDayMap)
 
 }
 
@@ -47,6 +47,6 @@ func printWeekdays(w map[int]string) {
 
 }
 
-func printRequestedDayFrom(w map[int]string, dayOrder int) {
+func printRequestedDayFrom(dayOrder int, w map[int]string) {
 	println(w[dayOrder])
 }

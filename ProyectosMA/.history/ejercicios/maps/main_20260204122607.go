@@ -7,16 +7,15 @@ import (
 
 func main() {
 
-	printWeekdays(getWeekDaysMap())
+	printWeekdays(loadWeekDays())
 
-	weekDayMap := getWeekDaysMap()
-	requestedDay := requestWeekDayFromConsole()
-
-	printRequestedDayFrom(weekDayMap, requestedDay)
+	weekDayMap := loadWeekDays()
+	dayOrder := requestWeekDay()
+	printRequestedDayFrom(dayOrder, weekDayMap)
 
 }
 
-func requestWeekDayFromConsole() int {
+func requestWeekDay() int {
 
 	var dayOrder int
 
@@ -25,7 +24,7 @@ func requestWeekDayFromConsole() int {
 	return dayOrder
 }
 
-func getWeekDaysMap() map[int]string {
+func loadWeekDays() map[int]string {
 	weekDay := map[int]string{}
 
 	for i := range 7 {
@@ -47,6 +46,6 @@ func printWeekdays(w map[int]string) {
 
 }
 
-func printRequestedDayFrom(w map[int]string, dayOrder int) {
+func printRequestedDayFrom(dayOrder int, w map[int]string) {
 	println(w[dayOrder])
 }
