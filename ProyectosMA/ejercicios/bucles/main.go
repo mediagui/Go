@@ -70,8 +70,6 @@ func main() {
 		// Espera a que el usuario presione Enter antes de mostrar el menú nuevamente
 		menu.PressEnterToContinue()
 
-		view.ShowExitGamingSessionMessage()
-		view.PressEnterToContinue()
 	}
 
 }
