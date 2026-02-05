@@ -1,0 +1,6 @@
+// This package contains all the constants, method and functions used for configuring the application
+package config
+
+// Common consts
+const LOWER_LIMIT = 1
+const UPPER_LIMIT = 6

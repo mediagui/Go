@@ -2,10 +2,7 @@
 // The values available to choose are defined within the LOWER_LIMIT and UPPER_LIMIT constants in the config package.
 package validation
 
-import (
-	"bucles/config"
-	"fmt"
-)
+import "bucles/config"
 
 // Returns true if the selected option value is in between the values defined in LOWER_LIMIT and UPPER_LIMIT
 func IsAValidOption(selectedOption int) bool {
@@ -14,9 +11,9 @@ func IsAValidOption(selectedOption int) bool {
 
 }
 
-func CheckError(e error, msg string) {
-	if e != nil {
-		fmt.Println(msg)
-		panic(msg)
+func ShouldIExit(selectedOption int) {
+	if selectedOption == config.UPPER_LIMIT {
+
+		return
 	}
 }

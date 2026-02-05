@@ -2,9 +2,7 @@
 package menu
 
 import (
-	c "bucles/config"
 	"bucles/util"
-
 	"fmt"
 )
 
@@ -34,7 +32,9 @@ func ReadOptionFromConsole() int {
 	return selectedOption
 }
 
+// 
 func PressEnterToContinue() {
-	fmt.Print(c.PRESS_ENTER_TO_CONTINUE)
+
+	fmt.Print("Presiona Enter para continuar...")
 	fmt.Scanln()
 }

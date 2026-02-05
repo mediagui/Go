@@ -13,11 +13,8 @@
 package main
 
 import (
-	"bucles/config"
-	"bucles/games"
-	"bucles/util/validation"
-	menu "bucles/view"
-
+	"bucles/menu"
+	"bucles/validation"
 	"fmt"
 )
 
@@ -51,24 +48,18 @@ import (
 func main() {
 
 	for {
-		// Muestra las opciones disponibles al usuario
+
 		menu.ShowMenuInConsole()
 
-		// Lee la opción seleccionada desde la entrada estándar
 		selectedOption := menu.ReadOptionFromConsole()
 
-		// Valida que la opción sea un número válido en el rango esperado
-		if validation.IsAValidOption(selectedOption) {
-			// Si es válida, ejecuta el juego/ejercicio correspondiente
+		if isValid := !validation.IsAValidOption(selectedOption); isValid {
+
 			playGame(selectedOption)
 
 		} else {
-			// Si no es válida, simplemente continúa el bucle sin hacer nada
-			// (el usuario verá un mensaje de error en el menú siguiente)
-		}
 
-		// Espera a que el usuario presione Enter antes de mostrar el menú nuevamente
-		menu.PressEnterToContinue()
+		}
 
 		view.ShowExitGamingSessionMessage()
 		view.PressEnterToContinue()
@@ -118,20 +109,5 @@ func main() {
 // 2. No es necesario modificar playGame() ni main()
 // 3. El nuevo ejercicio funcionará automáticamente con el flujo existente
 func playGame(selectedOption int) {
-
-	// Obtiene la función encapsulada basada en la opción seleccionada
-	// El retorno es siempre de tipo GameFunction (interfaz)
-	// Aunque internamente contiene funciones con diferentes firmas
-	game := games.GetGame(selectedOption)
-
-	// Ejecuta la función encapsulada llamando a su método Execute()
-	// Se pasa nil como argumento (no se usa en este caso)
-	// El resultado puede ser de cualquier tipo (se retorna como any)
-	result := game.Execute(nil)
-
-	// Muestra el resultado obtenido en la consola
-	fmt.Println(config.RESULT, result)
-
-	// Muestra la opción que fue ejecutada
-	fmt.Println(config.SELECTED, selectedOption)
+	fmt.Println("Selected", selectedOption)
 }
