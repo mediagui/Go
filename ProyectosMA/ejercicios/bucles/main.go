@@ -13,31 +13,123 @@
 package main
 
 import (
-	"bucles/menu"
-	"bucles/validation"
+	"bucles/config"
+	"bucles/games"
+	"bucles/util/validation"
+	menu "bucles/view"
+
 	"fmt"
 )
 
+// ============================================================================
+// FUNCIÓN MAIN
+// ============================================================================
+//
+// main es el punto de entrada principal del programa.
+//
+// FLUJO DE EJECUCIÓN:
+// 1. Inicia un bucle infinito (for {})
+// 2. Muestra el menú de opciones al usuario
+// 3. Lee la opción seleccionada por el usuario
+// 4. Valida que la opción sea válida
+// 5. Si es válida, ejecuta playGame() con esa opción
+// 6. Espera a que el usuario presione Enter para continuar
+// 7. Repite desde el paso 2
+//
+// ESTRUCTURA DEL BUCLE:
+//
+//	for {
+//	    - Mostrar menú
+//	    - Leer opción
+//	    - Validar opción
+//	    - Ejecutar juego si es válida
+//	    - Esperar Enter
+//	}
+//
+// Este patrón crea una experiencia interactiva donde el usuario puede
+// elegir diferentes ejercicios repetidamente.
 func main() {
 
 	for {
-
+		// Muestra las opciones disponibles al usuario
 		menu.ShowMenuInConsole()
 
+		// Lee la opción seleccionada desde la entrada estándar
 		selectedOption := menu.ReadOptionFromConsole()
 
-		if isValid := !validation.IsAValidOption(selectedOption); isValid {
-
+		// Valida que la opción sea un número válido en el rango esperado
+		if validation.IsAValidOption(selectedOption) {
+			// Si es válida, ejecuta el juego/ejercicio correspondiente
 			playGame(selectedOption)
 
 		} else {
-
+			// Si no es válida, simplemente continúa el bucle sin hacer nada
+			// (el usuario verá un mensaje de error en el menú siguiente)
 		}
+
+		// Espera a que el usuario presione Enter antes de mostrar el menú nuevamente
+		menu.PressEnterToContinue()
 
 	}
 
 }
 
+// ============================================================================
+// FUNCIÓN PLAYGAME
+// ============================================================================
+//
+// playGame es la función que ejecuta el juego/ejercicio seleccionado.
+// Demuestra el uso práctico de la interfaz GameFunction y el patrón
+// de funciones heterogéneas implementado en games.go.
+//
+// PARÁMETRO:
+// - selectedOption (int): El número de la opción seleccionada por el usuario
+//
+// FLUJO:
+// 1. Obtiene la función encapsulada llamando a games.GetGame()
+// 2. Ejecuta la función llamando a game.Execute(nil)
+// 3. Muestra el resultado en la consola
+// 4. Muestra la opción que se ejecutó
+//
+// EJEMPLO DE EJECUCIÓN:
+//
+//	selectedOption = 1
+//	game = games.GetGame(1)      // Retorna interfaz GameFunction con función de factorial
+//	result = game.Execute(nil)   // Ejecuta la función y retorna el resultado
+//	Imprime: "Resultado: 120" (si el usuario ingresó 5)
+//	        "Opción seleccionada: 1"
+//
+// VENTAJAS DE ESTE DISEÑO:
+// - playGame() no necesita saber la firma específica de cada función
+// - No hay condicionales para manejar diferentes tipos de retorno
+// - Es extensible: agregar nuevos ejercicios solo requiere modificar GetGame()
+// - La interfaz GameFunction proporciona un contrato universal
+//
+// EJEMPLO DE CÓMO AGREGAR UN NUEVO EJERCICIO:
+//  1. En games.go, agregar un nuevo case en GetGame():
+//     case 6:
+//     return buildFunction(func(p any) any {
+//     // Código del nuevo ejercicio
+//     return resultado
+//     })
+//
+// 2. No es necesario modificar playGame() ni main()
+// 3. El nuevo ejercicio funcionará automáticamente con el flujo existente
 func playGame(selectedOption int) {
-	fmt.Println("Selected", selectedOption)
+
+	// Obtiene la función encapsulada basada en la opción seleccionada
+	// El retorno es siempre de tipo GameFunction (interfaz)
+	// Aunque internamente contiene funciones con diferentes firmas
+	game := games.GetGame(selectedOption)
+
+	// Ejecuta la función encapsulada llamando a su método Execute()
+	// Se pasa nil como argumento (no se usa en este caso)
+	// El resultado puede ser de cualquier tipo (se retorna como any)
+	result := game.Execute(nil)
+
+	// Muestra el resultado obtenido en la consola
+	fmt.Println(config.RESULT, result)
+
+	// Muestra la opción que fue ejecutada
+	fmt.Println(config.SELECTED, selectedOption)
 }
