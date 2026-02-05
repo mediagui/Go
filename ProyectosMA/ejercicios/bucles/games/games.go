@@ -2,7 +2,11 @@ package games
 
 import (
 	c "bucles/config"
-	v "bucles/view"
+	v "bucles/util/validation"
+	menu "bucles/view"
+	"fmt"
+	"slices"
+
 	"strconv"
 )
 
@@ -134,59 +138,44 @@ func buildFunction[T any, R any](f func(T) R) GameFunction {
 	return &FunctionWrapper[T, R]{fn: f}
 }
 
-// ============================================================================
-// FUNCIÓN GETGAME
-// ============================================================================
-//
-// GetGame retorna una función encapsulada basada en la opción seleccionada.
-// Es el punto de entrada principal que devuelve funciones heterogéneas
-// (funciones con diferentes firmas/tipos).
-//
-// PARÁMETRO:
-// - optionSelected (int): Número que indica qué juego/ejercicio ejecutar
-//
-// RETORNA:
-// - GameFunction: Una función encapsulada lista para ejecutarse
-//
-// CASOS SOPORTADOS:
-//
-//	1: Calcula el factorial de un número
-//	2-5: Funciones de demostración (retornan nil)
-//
-// FUNCIONAMIENTO:
-// - El switch selecciona qué función crear según optionSelected
-// - buildFunction envuelve cada función en un GameFunction
-// - El retorno es siempre del tipo GameFunction (interfaz)
-//
-// VENTAJA DE ESTA ARQUITECTURA:
-// - Cada caso puede tener una función con firma completamente diferente
-// - El código llamador (main.go) no necesita saber la firma específica
-// - Solo necesita llamar a game.Execute() para ejecutar cualquier juego
-//
-// EJEMPLO:
-//
-//	game := GetGame(1)           // Obtiene la función factorial
-//	resultado := game.Execute()  // Ejecuta y retorna el factorial
 func GetGame(optionSelected int) GameFunction {
 
 	switch optionSelected {
-	// =====================================================================
-	// CASO 1: JUEGO DE FACTORIAL
-	// =====================================================================
-	// Calcula el factorial de un número ingresado por el usuario.
-	//
-	// FIRMA: func(any) any
-	// - Parámetro: any (no se usa directamente, se pide al usuario)
-	// - Retorno: any (contiene el valor factorial como int)
-	//
-	// FLUJO:
-	// 1. Solicita un número al usuario
-	// 2. Convierte la entrada a int
-	// 3. Calcula factorial: n * (n-1) * (n-2) * ... * 1
-	// 4. Retorna el resultado
-	case 1:
+	case 1: // Guess the letter type
 		return buildFunction(func(parametersGame any) any {
-			n, _ := strconv.Atoi(v.ResquestValue(c.GET_NUMBER_TO_CALC_FACTORIAL))
+
+			letterInput := menu.ResquestValue(c.LET_ME_KNOW_THE_LETTER)
+
+			// Esto es complicarlo, pero es para demostrar el uso de funciones anónimas y closures
+			return func(letter string) string {
+				vocales := []string{"a", "e", "i", "o", "u"}
+
+				if _, err := strconv.Atoi(letter); err != nil {
+					if slices.Contains(vocales, letterInput) {
+						return c.VOWEL
+					}
+					return c.CONSONANT
+				}
+
+				return c.ITS_NOT_A_LETTER
+
+			}(letterInput)
+
+		})
+	case 2: // Odd or Even
+		return buildFunction(func(parametersGame any) any {
+
+			input, err := strconv.Atoi(menu.ResquestValue(c.LET_ME_KNOW_THE_NUMBER))
+			v.CheckError(err, c.INVALID_NUMBER)
+
+			if input%2 == 0 {
+				return c.EVEN
+			}
+			return c.ODD
+		})
+	case 3: // Factorial calculation
+		return buildFunction(func(parametersGame any) any {
+			n, _ := strconv.Atoi(menu.ResquestValue(c.LET_ME_KNOW_THE_NUMBER))
 
 			var r int = 1
 
@@ -196,9 +185,55 @@ func GetGame(optionSelected int) GameFunction {
 
 			return r
 		})
-	case 2, 3, 4, 5:
-		v.ShowMockText(c.SELECTED)
-		fallthrough // Continúa al caso default
+	case 4: // Sum without reach 50
+		return buildFunction(func(parametersGame any) any {
+			sum := 0
+
+			for sum < 50 {
+				input, err := strconv.Atoi(menu.ResquestValue(c.LET_ME_KNOW_THE_NUMBER))
+				v.CheckError(err, c.INVALID_NUMBER)
+				sum += input
+			}
+
+			return sum
+		})
+	case 5:
+		return buildFunction(func(parametersGame any) any {
+
+			// Print the menu area options and request the user to select one of them
+			areaOption := func() int {
+				var opt int
+				var err error
+				for {
+					fmt.Println("1. Area of a square\n2. Area of a triangle\n3. End")
+					opt, err = strconv.Atoi(menu.ResquestValue(c.LET_ME_KNOW_THE_AREA_TYPE))
+					v.CheckError(err, c.INVALID_NUMBER)
+					if opt == 3 {
+						break
+					}
+				}
+				return opt
+			}()
+
+			var base, height, area float64
+			var err error
+
+			base, err = strconv.ParseFloat(menu.ResquestValue(c.LET_ME_KNOW_THE_BASE), 64)
+			v.CheckError(err, c.INVALID_NUMBER)
+			height, err = strconv.ParseFloat(menu.ResquestValue(c.LET_ME_KNOW_THE_HEIGHT), 64)
+			v.CheckError(err, c.INVALID_NUMBER)
+
+			switch areaOption {
+			case 1:
+				area = base * height
+			case 2:
+				area = (base * height) / 2
+			default:
+				area = 0.0
+			}
+
+			return area
+		})
 
 	default:
 		return buildFunction(func(parametersGame any) any {
