@@ -1,0 +1,44 @@
+package dto
+
+type userStruct struct {
+	nombre    string
+	apellido1 string
+	apellido2 string
+	dni       string
+	tfno      int
+}
+
+func (user *userStruct) GetNombre() string {
+	return user.nombre
+}
+func (user *userStruct) SetNombre(nombre string) {
+	user.nombre = nombre
+}
+
+func (user *userStruct) GetApellido1() string {
+	return user.apellido1
+}
+func (user *userStruct) SetApellido1(apellido1 string) {
+	user.apellido1 = apellido1
+}
+
+func (user userStruct) GetApellido2() string {
+	return user.apellido2
+}
+func (user *userStruct) SetApellido2(apellido2 string) {
+	user.apellido2 = apellido2
+}
+
+func (user userStruct) GetDni() string {
+	return user.dni
+}
+func (user *userStruct) SetDni(dni string) {
+	user.dni = dni
+}
+
+func (user userStruct) GetTfno() int {
+	return user.tfno
+}
+func (user *userStruct) SetTfno(tfno int) {
+	user.tfno = tfno
+}
