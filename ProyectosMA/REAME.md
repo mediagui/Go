@@ -53,6 +53,16 @@ Includes official documentation, tools, communities, practical examples, and top
 
 - [Awesome Go](https://awesome-go.com/)
 - [GoBridge](https://github.com/gobridge/about-us/blob/master/README.md)
+- Database frameworks
+  - [GORM](https://github.com/go-gorm/gorm)
+  ORM completo con mapeo objeto-relacional, migraciones, asociaciones, validaciones y soporte multi-DB. Muy developer-friendly.
+  - [sqlx](https://github.com/jmoiron/sqlx)
+	Extensión sobre database/sql con structs scanning, named queries y iteradores. Mantiene SQL puro con ergonomía extra.
+  - [Ent](https://github.com/ent/ent)
+  ORM basado en esquema de código fuente con generación automática de queries tipadas. Ideal para apps grandes y refactorizaciones.
+  - [Bun](https://github.com/uptrace/bun)
+    ORM y query builder SQL-first, rápido y explícito, con pooling y soporte PostgreSQL/SQLite/MySQL. Moderno y performant.
+​
 
 </details>
 
