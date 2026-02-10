@@ -22,8 +22,6 @@ func main() {
 	inout.MuestraMenuVisualizacionDatos()
 	sliceCampos := inout.GetCamposAMostrar()
 
-	inout.GeValuesFromDto(sliceCampos, usuario)
-
-	//fmt.Println(sliceCampos)
+	fmt.Println(sliceCampos)
 	fmt.Printf("usuario: %#v", *usuario)
 }

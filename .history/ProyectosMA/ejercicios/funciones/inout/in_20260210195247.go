@@ -51,14 +51,15 @@ func invocaElMetodoEnDto(metodo reflect.Value, v string, nombreMetodo string) {
 		if v != "" {
 			// Set method call
 			metodo.Call([]reflect.Value{reflect.ValueOf(v)})
-			log.Printf("Valor [%s] almacenado en [%s].\n", v, nombreMetodo)
 		} else {
 			// Get method call
 			resultado := metodo.Call([]reflect.Value{})
 			if len(resultado) > 0 {
-				log.Printf("Valor obtenido de [%s]: %v\n", nombreMetodo, resultado[0].Interface())
+				log.Printf("Valor obtenido de [%s]: %v\n", nombreMetodo, string(resultado[0].(string)))
 			}
 		}
+
+		log.Printf("Valor [%s] almacenado en [%s].\n", v, nombreMetodo)
 
 	} else {
 		fmt.Printf("Método/Func [%s] inválido\n", nombreMetodo)

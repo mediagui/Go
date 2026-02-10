@@ -9,21 +9,20 @@ import (
 	"fmt"
 	"funciones/dto"
 	"funciones/inout"
+	"funciones/view"
 )
 
 func main() {
 
 	usuario := &dto.UsuarioStruct{}
 
-	//	inout.MuestraMenuPrincipal()
-	//	opcion := inout.GetOpcionSeleccionada()
+	view.MuestraMenuPrincipal()
+	opcion := view.GetOpcionSeleccionada()
 
-	inout.PedirCamposAGuardar(usuario)
-	inout.MuestraMenuVisualizacionDatos()
-	sliceCampos := inout.GetCamposAMostrar()
+	if opcion == 1 {
+		view.
+	}
+	inout.PedirInfo(usuario)
 
-	inout.GeValuesFromDto(sliceCampos, usuario)
-
-	//fmt.Println(sliceCampos)
 	fmt.Printf("usuario: %#v", *usuario)
 }

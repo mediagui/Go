@@ -15,15 +15,7 @@ func main() {
 
 	usuario := &dto.UsuarioStruct{}
 
-	//	inout.MuestraMenuPrincipal()
-	//	opcion := inout.GetOpcionSeleccionada()
+	inout.PedirInfo(usuario)
 
-	inout.PedirCamposAGuardar(usuario)
-	inout.MuestraMenuVisualizacionDatos()
-	sliceCampos := inout.GetCamposAMostrar()
-
-	inout.GeValuesFromDto(sliceCampos, usuario)
-
-	//fmt.Println(sliceCampos)
 	fmt.Printf("usuario: %#v", *usuario)
 }

@@ -51,7 +51,6 @@ func invocaElMetodoEnDto(metodo reflect.Value, v string, nombreMetodo string) {
 		if v != "" {
 			// Set method call
 			metodo.Call([]reflect.Value{reflect.ValueOf(v)})
-			log.Printf("Valor [%s] almacenado en [%s].\n", v, nombreMetodo)
 		} else {
 			// Get method call
 			resultado := metodo.Call([]reflect.Value{})
@@ -59,6 +58,8 @@ func invocaElMetodoEnDto(metodo reflect.Value, v string, nombreMetodo string) {
 				log.Printf("Valor obtenido de [%s]: %v\n", nombreMetodo, resultado[0].Interface())
 			}
 		}
+
+		log.Printf("Valor [%s] almacenado en [%s].\n", v, nombreMetodo)
 
 	} else {
 		fmt.Printf("Método/Func [%s] inválido\n", nombreMetodo)
@@ -134,9 +135,9 @@ func PedirCamposAGuardar(user *dto.UsuarioStruct) {
 	}
 }
 
-func GeValuesFromDto(fields []string, userDto *dto.UsuarioStruct) {
+func GeValuesFromDto(fields []string, userDto *dto.UsuarioStruct) dto.UsuarioStruct {
 
-	//var dto dto.UsuarioStruct
+	var dto dto.UsuarioStruct
 
 	// Obtenemos el puntero (usando reflect)
 	userDtoValue := reflect.ValueOf(userDto)

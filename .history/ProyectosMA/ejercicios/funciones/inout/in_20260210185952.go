@@ -13,13 +13,6 @@ import (
 // Campos disponibles para pedir
 const CAMPOS = "Nombre,Apellido1,Apellido2,Dni,Tfno"
 
-type tipoMetodo string
-
-const (
-	SET tipoMetodo = "Set"
-	GET tipoMetodo = "Get"
-)
-
 var camposDisponibles []string = strings.Split(CAMPOS, ",")
 
 var datoAPedir []string
@@ -28,52 +21,41 @@ var datoAPedir []string
 // campo: nombre del campo
 // valor: valor del campo
 // user: puntero al dto que almacenará los valores
-func guardaCampoEn(campo string, valor string, userDto *dto.UsuarioStruct) {
+func guardaCampoEn(campo string, valor string, user *dto.UsuarioStruct) {
 
 	// Obtenemos el puntero (usando reflect)
-	userDtoValue := reflect.ValueOf(userDto)
+	userValue := reflect.ValueOf(user)
 
 	// Construimos el setter (e.g., "SetNombre" a partir de "Nombre")
-	nombreMetodo, metodo := metodoAInvocar(campo, userDtoValue, SET)
+	nombreMetodo, metodo := metodoAInvocar(campo, userValue)
 
 	// Guardamos el valor en el dto
-	invocaElMetodoEnDto(metodo, valor, nombreMetodo)
+	guardaElValorEnDto(metodo, valor, nombreMetodo)
 
 }
 
-// Almacena el valor introducido en el dto utilizando el método generado
-func invocaElMetodoEnDto(metodo reflect.Value, v string, nombreMetodo string) {
+func guardaElValorEnDto(metodo reflect.Value, v string, nombreMetodo string) {
 
 	// Si el método existe...
 	if metodo.IsValid() {
 		log.Printf("Método/Func [%s] encontrado.\n", nombreMetodo)
-		// ... lo invocamos y guardamos el valor o devolvemos el valor almacenado
-		if v != "" {
-			// Set method call
-			metodo.Call([]reflect.Value{reflect.ValueOf(v)})
-			log.Printf("Valor [%s] almacenado en [%s].\n", v, nombreMetodo)
-		} else {
-			// Get method call
-			resultado := metodo.Call([]reflect.Value{})
-			if len(resultado) > 0 {
-				log.Printf("Valor obtenido de [%s]: %v\n", nombreMetodo, resultado[0].Interface())
-			}
-		}
+		// ... lo invocamos y guardamos el valor
+		metodo.Call([]reflect.Value{reflect.ValueOf(v)})
+		log.Printf("Valor [%s] almacenado en [%s].\n", v, nombreMetodo)
 
 	} else {
 		fmt.Printf("Método/Func [%s] inválido\n", nombreMetodo)
 	}
 }
 
-func metodoAInvocar(k string, userDtoValue reflect.Value, tipo tipoMetodo) (string, reflect.Value) {
+func metodoAInvocar(k string, userValue reflect.Value) (string, reflect.Value) {
 
 	log.Println("Generando el método a invocar...")
 
-	//Aquí no es de mucha utilidad, pero muestra como usar tipos de datos personalizados
-	methodName := string(tipo) + k
+	methodName := "Set" + k
 
 	// Obtenemos el método
-	method := userDtoValue.MethodByName(methodName)
+	method := userValue.MethodByName(methodName)
 
 	log.Printf("Método a invocar: [%s].", methodName)
 
@@ -101,8 +83,8 @@ func GetOpcionSeleccionada() int {
 func GetCamposAMostrar() []string {
 
 	var campos string
-	fmt.Scanln(&campos)
-	sliceCampos := strings.Split(campos, ",")
+	fmt.Scanln(campos)
+	sliceCampos := strings.Split(strings.TrimSpace(campos), ",")
 
 	// Eliminar los espacios en blanco de cada uno de los elementos del sliceCampos
 	for i := range sliceCampos {
@@ -132,21 +114,4 @@ func PedirCamposAGuardar(user *dto.UsuarioStruct) {
 		guardaCampoEn(campoAGuardar, valorAGuardar, user)
 
 	}
-}
-
-func GeValuesFromDto(fields []string, userDto *dto.UsuarioStruct) {
-
-	//var dto dto.UsuarioStruct
-
-	// Obtenemos el puntero (usando reflect)
-	userDtoValue := reflect.ValueOf(userDto)
-
-	for i := 0; i < len(fields); i++ {
-
-		nombreMetodo, metodo := metodoAInvocar(fields[i], userDtoValue, GET)
-
-		invocaElMetodoEnDto(metodo, "", nombreMetodo)
-	}
-	// Construimos el setter (e.g., "SetNombre" a partir de "Nombre")
-
 }
