@@ -9,8 +9,10 @@ import (
 
 // Returns true if the selected option value is in between the values defined in LOWER_LIMIT and UPPER_LIMIT
 func IsAValidOption(selectedOption int) bool {
+	lowerLimitOk := c.LOWER_LIMIT >= selectedOption
+	upperLimitOk := c.UPPER_LIMIT >= selectedOption
 
-	return (c.LOWER_LIMIT >= selectedOption) && (selectedOption <= c.UPPER_LIMIT)
+	return upperLimitOk && lowerLimitOk
 
 }
 

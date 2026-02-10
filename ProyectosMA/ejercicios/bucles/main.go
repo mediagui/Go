@@ -13,10 +13,10 @@
 package main
 
 import (
-	"bucles/config"
+	c "bucles/config"
 	"bucles/games"
-	"bucles/util/validation"
-	menu "bucles/view"
+	v "bucles/util/validation"
+	m "bucles/view"
 
 	"fmt"
 )
@@ -52,23 +52,27 @@ func main() {
 
 	for {
 		// Muestra las opciones disponibles al usuario
-		menu.ShowMenuInConsole()
+		m.ShowMenuInConsole()
 
 		// Lee la opción seleccionada desde la entrada estándar
-		selectedOption := menu.ReadOptionFromConsole()
+		selectedOption := m.ReadOptionFromConsole()
 
 		// Valida que la opción sea un número válido en el rango esperado
-		if validation.IsAValidOption(selectedOption) {
+		if v.IsAValidOption(selectedOption) {
+			if v.IsExitSelected(selectedOption) {
+				break
+			}
 			// Si es válida, ejecuta el juego/ejercicio correspondiente
 			playGame(selectedOption)
 
 		} else {
 			// Si no es válida, simplemente continúa el bucle sin hacer nada
 			// (el usuario verá un mensaje de error en el menú siguiente)
+			m.ShowMockText(c.INVALID_OPTION)
 		}
 
 		// Espera a que el usuario presione Enter antes de mostrar el menú nuevamente
-		menu.PressEnterToContinue()
+		m.PressEnterToContinue()
 
 	}
 
@@ -128,8 +132,8 @@ func playGame(selectedOption int) {
 	result := game.Execute(nil)
 
 	// Muestra el resultado obtenido en la consola
-	fmt.Println(config.RESULT, result)
+	fmt.Println(c.RESULT, result)
 
 	// Muestra la opción que fue ejecutada
-	fmt.Println(config.SELECTED, selectedOption)
+	fmt.Println(c.SELECTED, selectedOption)
 }
