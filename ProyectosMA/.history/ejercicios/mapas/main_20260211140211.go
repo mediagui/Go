@@ -117,7 +117,7 @@ func getWeekDaysDisplay() string {
 //   - elemento 1
 //   - elemento 2
 //
-// This is a code block
+// # This is a code block
 //
 //	func fillTheMapWithWeekDays(weekDays map[int]string) {
 //		// Usamos índices 0..6 para los días (0=Sunday .. 6=Saturday)
@@ -125,30 +125,6 @@ func getWeekDaysDisplay() string {
 //			weekDays[i] = time.Weekday(i).String()
 //		}
 //	}
-//
-// # Preformated code beside text
-//
-// Match reports whether name matches the shell pattern.
-// The pattern syntax is:
-//
-//	pattern:
-//	    { term }
-//	term:
-//	    '*'         matches any sequence of non-/ characters
-//	    '?'         matches any single non-/ character
-//	    '[' [ '^' ] { character-range } ']'
-//	                character class (must be non-empty)
-//	    c           matches character c (c != '*', '?', '\\', '[')
-//	    '\\' c      matches character c
-//
-//	character-range:
-//	    c           matches character c (c != '\\', '-', ']')
-//	    '\\' c      matches character c
-//	    lo '-' hi   matches character c for lo <= c <= hi
-//
-// Match requires pattern to match all of name, not just a substring.
-// The only possible returned error is [ErrBadPattern], when pattern
-// is malformed.
 func fillTheMapWithWeekDays(weekDays map[int]string) {
 	// Usamos índices 0..6 para los días (0=Sunday .. 6=Saturday)
 	for i := 0; i <= 6; i++ {
