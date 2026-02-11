@@ -77,7 +77,7 @@ func PedirCamposAGuardar(user *dto.UsuarioStruct) {
 	//Pedimos todos los datos definidos en la constante CAMPOS a través del slice
 	for _, campoAGuardar := range camposDisponibles {
 
-		slog.Info(blue + "Pidiendo campo " + campoAGuardar + reset)
+		slog.Info(blue + "Pidiendo campo " + campoAGuardar)
 
 		fmt.Printf("%s: ", campoAGuardar)                //Pedimos el valor
 		valorAGuardar, _ := reader.ReadString('\n')      //Leemos el dato
@@ -127,28 +127,28 @@ func invocaElMetodoEnDto(metodo reflect.Value, v string, nombreMetodo string) {
 
 	// Si el método existe...
 	if metodo.IsValid() {
-		slog.Info(blue+"Método/Func encontrado."+reset, "metodo", nombreMetodo)
+		slog.Info(blue+"Método/Func encontrado.", "metodo", nombreMetodo)
 		// ... lo invocamos y guardamos el valor o devolvemos el valor almacenado
 		if v != "" {
 			// Set method call
 			metodo.Call([]reflect.Value{reflect.ValueOf(v)})
-			slog.Info(blue+"Valor almacenado."+reset, "valor", v, "metodo", nombreMetodo)
+			slog.Info(blue+"Valor almacenado", "valor", v, "metodo", nombreMetodo)
 		} else {
 			// Get method call
 			resultado := metodo.Call([]reflect.Value{})
 			if len(resultado) > 0 {
-				slog.Info(blue+"Valor obtenido"+reset, "metodo", nombreMetodo, "valor", resultado[0].Interface())
+				slog.Info(blue+"Valor obtenido", "metodo", nombreMetodo, "valor", resultado[0].Interface())
 			}
 		}
 
 	} else {
-		slog.Error(red+"Método/Func inválido"+reset, "metodo", nombreMetodo)
+		slog.Error(red+"Método/Func inválido", "metodo", nombreMetodo)
 	}
 }
 
 func metodoAInvocar(k string, userDtoValue reflect.Value, tipo tipoMetodo) (string, reflect.Value) {
 
-	slog.Info(blue + "Generando el método a invocar..." + reset)
+	slog.Info(blue + "Generando el método a invocar...")
 
 	//Aquí no es de mucha utilidad, pero muestra como usar tipos de datos personalizados
 	methodName := string(tipo) + k
@@ -156,7 +156,7 @@ func metodoAInvocar(k string, userDtoValue reflect.Value, tipo tipoMetodo) (stri
 	// Obtenemos el método
 	method := userDtoValue.MethodByName(methodName)
 
-	slog.Info(blue+"Método a invocar"+reset, "metodo", methodName)
+	slog.Info(blue+"Método a invocar", "metodo", methodName)
 
 	return methodName, method
 }

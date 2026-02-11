@@ -142,13 +142,13 @@ func invocaElMetodoEnDto(metodo reflect.Value, v string, nombreMetodo string) {
 		}
 
 	} else {
-		slog.Error(red+"Método/Func inválido"+reset, "metodo", nombreMetodo)
+		slog.Error(red+"Método/Func inválido", "metodo", nombreMetodo)
 	}
 }
 
 func metodoAInvocar(k string, userDtoValue reflect.Value, tipo tipoMetodo) (string, reflect.Value) {
 
-	slog.Info(blue + "Generando el método a invocar..." + reset)
+	slog.Info(blue + "Generando el método a invocar...")
 
 	//Aquí no es de mucha utilidad, pero muestra como usar tipos de datos personalizados
 	methodName := string(tipo) + k
@@ -156,7 +156,7 @@ func metodoAInvocar(k string, userDtoValue reflect.Value, tipo tipoMetodo) (stri
 	// Obtenemos el método
 	method := userDtoValue.MethodByName(methodName)
 
-	slog.Info(blue+"Método a invocar"+reset, "metodo", methodName)
+	slog.Info(blue+"Método a invocar", "metodo", methodName)
 
 	return methodName, method
 }

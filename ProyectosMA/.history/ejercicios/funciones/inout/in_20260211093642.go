@@ -21,27 +21,18 @@ const (
 	GET tipoMetodo = "Get"
 )
 
-// Definimos códigos de color ANSI
-const (
-	reset  = "\033[0m"
-	red    = "\033[31m"
-	green  = "\033[32m"
-	yellow = "\033[33m"
-	blue   = "\033[34m"
-)
-
 var camposDisponibles []string = strings.Split(CAMPOS, ",")
 
 var datoAPedir []string
 
 // Muestra el menú principal para elegir entre introducir o mostrar datos
 func MuestraMenuPrincipal() {
-	fmt.Println(reset + "1. Introduzca datos\n2. Seleccione campos a mostrar\n\tElija: ")
+	fmt.Println("1. Introduzca datos\n2. Seleccione campos a mostrar\n\tElija: ")
 }
 
 // Muestra el menú para introducir los campos que se desean mostrar
 func MuestraMenuVisualizacionDatos() {
-	fmt.Println(reset + "Los posibles campos a mostrar son [Nombre, Apellido1, Tfno y Dni]\n\tEscriba el nombre de los campos separados por coma: ")
+	fmt.Println("Los posibles campos a mostrar son [Nombre, Apellido1, Tfno y Dni]\n\tEscriba el nombre de los campos separados por coma: ")
 }
 
 // Lee en consola la opción seleccionada y la devuelve
@@ -70,14 +61,14 @@ func GetCamposAMostrar() []string {
 func PedirCamposAGuardar(user *dto.UsuarioStruct) {
 
 	// fmt.Printf("Campos disponibles: %v", camposDisponibles)
-	fmt.Println(reset + "Introduzca la información pedida. ")
+	fmt.Println("Introduzca la información pedida. ")
 
 	reader := bufio.NewReader(os.Stdin)
 
 	//Pedimos todos los datos definidos en la constante CAMPOS a través del slice
 	for _, campoAGuardar := range camposDisponibles {
 
-		slog.Info(blue + "Pidiendo campo " + campoAGuardar + reset)
+		slog.Info("Pidiendo campo " + campoAGuardar)
 
 		fmt.Printf("%s: ", campoAGuardar)                //Pedimos el valor
 		valorAGuardar, _ := reader.ReadString('\n')      //Leemos el dato
@@ -127,28 +118,28 @@ func invocaElMetodoEnDto(metodo reflect.Value, v string, nombreMetodo string) {
 
 	// Si el método existe...
 	if metodo.IsValid() {
-		slog.Info(blue+"Método/Func encontrado."+reset, "metodo", nombreMetodo)
+		// slog.Info("Método/Func [%s] encontrado.", nombreMetodo)
 		// ... lo invocamos y guardamos el valor o devolvemos el valor almacenado
 		if v != "" {
 			// Set method call
 			metodo.Call([]reflect.Value{reflect.ValueOf(v)})
-			slog.Info(blue+"Valor almacenado."+reset, "valor", v, "metodo", nombreMetodo)
+			slog.Info("Valor [%s] almacenado en [%s].\n", v, nombreMetodo)
 		} else {
 			// Get method call
 			resultado := metodo.Call([]reflect.Value{})
 			if len(resultado) > 0 {
-				slog.Info(blue+"Valor obtenido"+reset, "metodo", nombreMetodo, "valor", resultado[0].Interface())
+				slog.Info("Valor obtenido de [%s]: %v\n", nombreMetodo, resultado[0].Interface())
 			}
 		}
 
 	} else {
-		slog.Error(red+"Método/Func inválido"+reset, "metodo", nombreMetodo)
+		fmt.Printf("Método/Func [%s] inválido\n", nombreMetodo)
 	}
 }
 
 func metodoAInvocar(k string, userDtoValue reflect.Value, tipo tipoMetodo) (string, reflect.Value) {
 
-	slog.Info(blue + "Generando el método a invocar..." + reset)
+	slog.Info("Generando el método a invocar...")
 
 	//Aquí no es de mucha utilidad, pero muestra como usar tipos de datos personalizados
 	methodName := string(tipo) + k
@@ -156,7 +147,7 @@ func metodoAInvocar(k string, userDtoValue reflect.Value, tipo tipoMetodo) (stri
 	// Obtenemos el método
 	method := userDtoValue.MethodByName(methodName)
 
-	slog.Info(blue+"Método a invocar"+reset, "metodo", methodName)
+	slog.Info("Método a invocar: [%s].", methodName)
 
 	return methodName, method
 }
