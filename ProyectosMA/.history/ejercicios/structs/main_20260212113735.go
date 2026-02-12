@@ -19,8 +19,6 @@ package main
 import (
 	"fmt"
 	"reflect"
-
-	"github.com/mediagui/structs/util"
 )
 
 // `personaStruct` define los campos que representan los datos de una persona.
@@ -124,6 +122,9 @@ func pideValorParaCampo(fieldName string) string {
 	// Ver: https://pkg.go.dev/fmt#Scanln
 	fmt.Scanln(&valor)
 
+	if valid
+
+
 	return valor
 }
 
@@ -165,12 +166,6 @@ func getStructFields(p *personaStruct) {
 		// `pv.Field(i).String()` obtiene el valor actual del campo como string.
 		// Ver: https://pkg.go.dev/reflect#StructTag.Get
 		// Ver: https://pkg.go.dev/reflect#Value.String
-
 		fmt.Printf("\t%s\t%s\n", field.Tag.Get("etiqueta"), pv.Field(i).String())
-
-		if field.Name == "DNI" {
-			fmt.Printf("\t NIF correcto: %v\n", util.ValidateNIF(pv.Field(i).String()))
-		}
-
 	}
 }

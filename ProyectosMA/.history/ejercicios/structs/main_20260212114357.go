@@ -169,7 +169,7 @@ func getStructFields(p *personaStruct) {
 		fmt.Printf("\t%s\t%s\n", field.Tag.Get("etiqueta"), pv.Field(i).String())
 
 		if field.Name == "DNI" {
-			fmt.Printf("\t NIF correcto: %v\n", util.ValidateNIF(pv.Field(i).String()))
+			fmt.Printf("\t - NIF correcto: %v\n", util.ValidateNIF(pv.Field(i).String()))
 		}
 
 	}
