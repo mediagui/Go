@@ -98,16 +98,6 @@ func completaDatosStruct(persona *personaStruct) {
 
 }
 
-// pideValorParaCampo muestra un prompt con el nombre del campo y lee la
-// entrada del usuario desde la entrada estándar, devolviendo la cadena
-// leída.
-//
-// Detalles:
-// - Usa `fmt.Printf` para mostrar el prompt (ver https://pkg.go.dev/fmt#Printf)
-// - Usa `fmt.Scanln` para leer la entrada hasta newline (ver https://pkg.go.dev/fmt#Scanln)
-//
-// Nota: `fmt.Scanln` divide la entrada por espacios; si necesita leer líneas
-// completas con espacios considere usar `bufio.NewReader(os.Stdin).ReadString('\n')`.
 func pideValorParaCampo(fieldName string) string {
 
 	// Muestra un prompt con `fmt.Printf` y lee la entrada con `fmt.Scanln`.

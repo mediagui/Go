@@ -36,38 +36,24 @@ type personaStruct struct {
 
 func main() {
 
-	// Crea un puntero a `personaStruct` y pasa ese puntero a las funciones
-	// que rellenan los datos y muestran los campos.
-
 	persona := &personaStruct{}
 
+	// Crea un puntero a `personaStruct` y pasa ese puntero a las funciones
+	// que rellenan los datos y muestran los campos.
 	// Pasamos un puntero porque las funciones usan reflection y requieren
-	// valores direccionables ( `reflect.Value.Elem()` ).
+	// valores direccionables (`reflect.Value.Elem()`).
 	// Ver: https://pkg.go.dev/reflect#Value.Elem
-
 	completaDatosStruct(persona)
+
 	getStructFields(persona)
 
 }
 
-// completaDatosStruct rellena los campos de `persona` leyendo valores desde
-// la entrada estándar. Usa reflection para obtener un `reflect.Value`
-// direccionable sobre el struct (mediante `reflect.ValueOf(...).Elem()`),
-// y un `reflect.Type` para iterar los campos (`NumField`, `Field`).
-// Por cada campo solicita el valor al usuario y lo asigna con
-//
-//	`reflect.Value.SetString` (requiere que el campo sea asignable y de tipo string).
-//
-// Enlaces:
-//   - reflect.ValueOf: https://pkg.go.dev/reflect#ValueOf
-//   - reflect.TypeOf:  https://pkg.go.dev/reflect#TypeOf
-//   - Value.Elem/Value.Field/Value.SetString: https://pkg.go.dev/reflect#Value
-//   - Type.NumField/Type.Field: https://pkg.go.dev/reflect#Type
 func completaDatosStruct(persona *personaStruct) {
 
 	// Obtener el `reflect.Value` direccionable del puntero `persona`.
-	//  `reflect.ValueOf(persona)` devuelve un Value que contiene el puntero;
-	//  `Elem()` obtiene el valor al que apunta (el struct) para permitir modificaciones.
+	// `reflect.ValueOf(persona)` devuelve un Value que contiene el puntero;
+	// `Elem()` obtiene el valor al que apunta (el struct) para permitir modificaciones.
 	// Ver: https://pkg.go.dev/reflect#ValueOf
 	personaValue := reflect.ValueOf(persona).Elem()
 
@@ -98,16 +84,19 @@ func completaDatosStruct(persona *personaStruct) {
 
 }
 
-// pideValorParaCampo muestra un prompt con el nombre del campo y lee la
-// entrada del usuario desde la entrada estándar, devolviendo la cadena
-// leída.
+// completaDatosStruct rellena los campos de `persona` leyendo valores desde
+// la entrada estándar. Usa reflection para obtener un `reflect.Value`
+// direccionable sobre el struct (mediante `reflect.ValueOf(...).Elem()`),
+// y un `reflect.Type` para iterar los campos (`NumField`, `Field`).
+// Por cada campo solicita el valor al usuario y lo asigna con
 //
-// Detalles:
-// - Usa `fmt.Printf` para mostrar el prompt (ver https://pkg.go.dev/fmt#Printf)
-// - Usa `fmt.Scanln` para leer la entrada hasta newline (ver https://pkg.go.dev/fmt#Scanln)
+//	`reflect.Value.SetString` (requiere que el campo sea asignable y de tipo string).
 //
-// Nota: `fmt.Scanln` divide la entrada por espacios; si necesita leer líneas
-// completas con espacios considere usar `bufio.NewReader(os.Stdin).ReadString('\n')`.
+// Enlaces:
+//   - reflect.ValueOf: https://pkg.go.dev/reflect#ValueOf
+//   - reflect.TypeOf:  https://pkg.go.dev/reflect#TypeOf
+//   - Value.Elem/Value.Field/Value.SetString: https://pkg.go.dev/reflect#Value
+//   - Type.NumField/Type.Field: https://pkg.go.dev/reflect#Type
 func pideValorParaCampo(fieldName string) string {
 
 	// Muestra un prompt con `fmt.Printf` y lee la entrada con `fmt.Scanln`.
@@ -127,14 +116,8 @@ func pideValorParaCampo(fieldName string) string {
 
 // getStructFields muestra por consola las etiquetas y los valores de cada
 // campo del struct `personaStruct`. Obtiene el `reflect.Type` del tipo para
-// leer las `StructTag` (ej.
-//
-//	`field.Tag.Get("etiqueta")`
-//
-// ) y usa el
-// `reflect.Value` direccionable para leer los valores actuales
-// ( `Value.Field(i).String()` ).
-//
+// leer las `StructTag` (ej. `field.Tag.Get("etiqueta")`) y usa el
+// `reflect.Value` direccionable para leer los valores actuales (`Value.Field(i).String()`).
 // Enlaces:
 //   - reflect.TypeFor / TypeOf: https://pkg.go.dev/reflect#TypeFor
 //   - StructTag.Get:        https://pkg.go.dev/reflect#StructTag.Get
