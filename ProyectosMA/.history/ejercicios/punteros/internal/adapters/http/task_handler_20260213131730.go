@@ -31,13 +31,12 @@ type TaskHandler struct {
 // CreateTask maneja la creación de nuevas tareas.
 // Delega la lógica de negocio al servicio inyectado.
 // En una aplicación real, este método sería llamado por un handler HTTP:
-//
-//	func (h *TaskHandler) HandleCreateTask(w http.ResponseWriter, r *http.Request) {
-//	    var task domain.TaskType
-//	    // parsear JSON del request
-//	    result, err := h.CreateTask(task)
-//	    // retornar JSON response
-//	}
+//     func (h *TaskHandler) HandleCreateTask(w http.ResponseWriter, r *http.Request) {
+//         var task domain.TaskType
+//         // parsear JSON del request
+//         result, err := h.CreateTask(task)
+//         // retornar JSON response
+//     }
 func (h *TaskHandler) CreateTask(task domain.TaskType) (domain.TaskType, error) {
 	// Delegar al servicio
 	return h.service.AddTask(task)
@@ -74,9 +73,8 @@ func (h *TaskHandler) FindAllTasks() (map[uint8]domain.TaskType, error) {
 // 2. Testeable: Se puede pasar un mock del servicio
 // 3. Flexible: Diferentes instancias pueden tener diferentes servicios
 // EJEMPLO DE USO (en main.go):
-//
-//	service := service.NewTaskService(repo)
-//	handler := http.NewTaskHandler(service)  // <- Inyectando el servicio
+//     service := service.NewTaskService(repo)
+//     handler := http.NewTaskHandler(service)  // <- Inyectando el servicio
 func NewTaskHandler(service ports.TaskService) *TaskHandler {
 	return &TaskHandler{
 		service: service,

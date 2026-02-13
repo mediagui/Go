@@ -78,10 +78,9 @@ func (t *inMemoryTaskRepository) Update(task domain.TaskType) (domain.TaskType, 
 // 1. Cambiar la implementación futura sin afectar el código que lo usa
 // 2. Retornar diferentes implementaciones según necesidad
 // EJEMPLO:
-//
-//	repo := repository.NewTaskRepository()  // Retorna ports.TaskRepository
-//	// En tests, podrías hacer:
-//	repo := &MockRepository{}  // Otro adaptador que implementa la interfaz
+//     repo := repository.NewTaskRepository()  // Retorna ports.TaskRepository
+//     // En tests, podrías hacer:
+//     repo := &MockRepository{}  // Otro adaptador que implementa la interfaz
 func NewTaskRepository() ports.TaskRepository {
 	return &inMemoryTaskRepository{
 		// Inicializar el mapa vacío

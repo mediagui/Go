@@ -27,7 +27,7 @@ const (
 // - "Completed" si el estado es 0
 // - "Uncompleted" si el estado es 1
 func (s TaskStatus) String() string {
-	return [...]string{"Completed", "Uncompleted"}[s]
+	return [...] string{"Completed", "Uncompleted"}[s]
 }
 
 // IsCompleted es un método de utilidad que verifica si una tarea está completada.

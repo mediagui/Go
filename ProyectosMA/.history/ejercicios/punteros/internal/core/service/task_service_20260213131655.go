@@ -62,10 +62,8 @@ func (service *TaskService) UpdateTask(task domain.TaskType) (domain.TaskType, e
 // NewTaskService es el CONSTRUCTOR que realizar INYECCIÓN DE DEPENDENCIAS.
 // Patrón básico en Go: constructores que retornan la interfaz, no la implementación.
 // EJEMPLO DE USO (en main.go):
-//
-//	repo := repository.NewTaskRepository()
-//	service := service.NewTaskService(repo)  // <- Inyectando el repositorio
-//
+//     repo := repository.NewTaskRepository()
+//     service := service.NewTaskService(repo)  // <- Inyectando el repositorio
 // VENTAJAS:
 // 1. Fácil de testear: Pasar un mock del repositorio
 // 2. Fácil de cambiar: Cambiar la implementación del repositorio en un solo lugar
