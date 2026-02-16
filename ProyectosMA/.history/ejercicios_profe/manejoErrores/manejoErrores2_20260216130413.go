@@ -1,4 +1,4 @@
-package manejoErrores
+package manejoErrores2
 
 import (
 	"errors"
