@@ -1,0 +1,3 @@
+package manejoErrores
+
+func EjpMajenoErr() {}
