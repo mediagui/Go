@@ -16,7 +16,8 @@ func ErroresBasicos() {
 	num, err := strconv.Atoi(str)
 
 	if err != nil {
-		fmt.Println("Error: ", err)
+		// Al no poder realizarse la conversión, se devuelve el valor por defecto del [int], que es 0.
+		fmt.Println("Numero: ", num, " Error: ", err)
 		return
 	} else {
 		fmt.Println("Número: ", num)
