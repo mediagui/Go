@@ -19,37 +19,31 @@ type contactStruct struct {
 
 func main() {
 
+	idFlag := flag.Int("id", 0, "ID del contacto a eliminar")
+	flag.Parse()
+
+	if *idFlag > 0 {
+		log.Println("Id to delete no found. Loading data.")
+	}
+
 	log.Println("Starting...")
 
-	idToDelete := checkInputParameter()
 
-	createAgenda()
+
 	loadContents()
 	showFileContents()
 
-	if *idToDelete != 0 {
-		deleteRecordsWithId(*idToDelete)
+	if *idFlag != 0 {
+		deleteRecordsWithId(*idFlag)
 	}
 
 	showFileContents()
 	panicRecover()
+
 	log.Println("End.")
 
 	os.Exit(0)
 
-}
-
-func checkInputParameter() *int {
-
-	idFlag := flag.Int("id", 0, "Contact ID to delete")
-	flag.Parse()
-
-	if *idFlag == 0 {
-		log.Println("Id to delete no set. Loading data.")
-	} else {
-		log.Printf("Id to delete: %d", *idFlag)
-	}
-	return idFlag
 }
 
 func deleteRecordsWithId(i int) {
@@ -77,7 +71,7 @@ func deleteRecordsWithId(i int) {
 
 	file = openAgenda()
 	defer file.Close()
-	saveContactsToAgenda(contentMap)
+	saveContactsToAgenda(contentMap, file)
 
 }
 
@@ -97,34 +91,43 @@ func getFileSize(fichero *os.File) int64 {
 }
 
 func loadContents() {
+	agenda := openAgenda(false)
 	contacts := map[int]contactStruct{}
 	fillContactMap(contacts)
-	saveContactsToAgenda(contacts)
+	saveContactsToAgenda(contacts, agenda)
 }
 
 func showFileContents() {
 
 	log.Println("Opening file for reading...")
-	agendaContent, err := os.ReadFile("agenda.txt")
-	checkError(err)
+	agenda := openAgenda(true)
+	defer agenda.Close()
+
+	os.ReadFile(agenda.Name())
+
 
 	log.Println("Showing file contents...")
+
+	agendaContent, err := os.ReadFile(agenda.Name())
+	checkError(err)
 	fmt.Printf("Contenido: \n%s\n", agendaContent)
 
 }
 
-func saveContactsToAgenda(contacts map[int]contactStruct) {
-	var buffer bytes.Buffer
-	for id, contact := range contacts {
-		buffer.WriteString(fmt.Sprintf("%d: %s %s\n", id, contact.name, contact.surname))
-	}
+func saveContactsToAgenda(contacts map[int]contactStruct, agenda *os.File) {
 
-	file := openAgenda(false)
-	_, err := file.WriteAt(buffer.Bytes(), 0)
-	checkError(err)
+	for id, contact := range contacts {
+		line := fmt.Sprintf("%d: %s %s\n", id, contact.name, contact.surname)
+		n, err := agenda.WriteString(line)
+
+		log.Printf("%d bytes written to %s file\n", n, agenda.Name())
+
+		checkError(err)
+
+	}
 }
 
-func createAgenda() {
+func createAgenda() *os.File {
 
 	log.Println("Creating file...")
 
@@ -140,6 +143,8 @@ func createAgenda() {
 	checkError(error)
 
 	panicRecover()
+
+	return fichero
 
 }
 

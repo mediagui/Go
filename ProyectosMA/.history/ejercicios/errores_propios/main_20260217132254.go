@@ -19,37 +19,29 @@ type contactStruct struct {
 
 func main() {
 
+	idFlag := flag.Int("id", 0, "ID del contacto a eliminar")
+	flag.Parse()
+
+	if *idFlag > 0 {
+		log.Println("Id to delete no found. Loading data.")
+	}
+
 	log.Println("Starting...")
 
-	idToDelete := checkInputParameter()
-
-	createAgenda()
 	loadContents()
 	showFileContents()
 
-	if *idToDelete != 0 {
-		deleteRecordsWithId(*idToDelete)
+	if *idFlag != 0 {
+		deleteRecordsWithId(*idFlag)
 	}
 
 	showFileContents()
 	panicRecover()
+
 	log.Println("End.")
 
 	os.Exit(0)
 
-}
-
-func checkInputParameter() *int {
-
-	idFlag := flag.Int("id", 0, "Contact ID to delete")
-	flag.Parse()
-
-	if *idFlag == 0 {
-		log.Println("Id to delete no set. Loading data.")
-	} else {
-		log.Printf("Id to delete: %d", *idFlag)
-	}
-	return idFlag
 }
 
 func deleteRecordsWithId(i int) {
@@ -77,7 +69,7 @@ func deleteRecordsWithId(i int) {
 
 	file = openAgenda()
 	defer file.Close()
-	saveContactsToAgenda(contentMap)
+	saveContactsToAgenda(contentMap, file)
 
 }
 
@@ -97,9 +89,10 @@ func getFileSize(fichero *os.File) int64 {
 }
 
 func loadContents() {
+	agenda := openAgenda(false)
 	contacts := map[int]contactStruct{}
 	fillContactMap(contacts)
-	saveContactsToAgenda(contacts)
+	saveContactsToAgenda(contacts, agenda)
 }
 
 func showFileContents() {
@@ -124,7 +117,7 @@ func saveContactsToAgenda(contacts map[int]contactStruct) {
 	checkError(err)
 }
 
-func createAgenda() {
+func createAgenda() *os.File {
 
 	log.Println("Creating file...")
 
@@ -140,6 +133,8 @@ func createAgenda() {
 	checkError(error)
 
 	panicRecover()
+
+	return fichero
 
 }
 

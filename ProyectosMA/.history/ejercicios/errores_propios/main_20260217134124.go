@@ -21,14 +21,14 @@ func main() {
 
 	log.Println("Starting...")
 
-	idToDelete := checkInputParameter()
+	idFlag := checkInputParameter()
 
 	createAgenda()
 	loadContents()
 	showFileContents()
 
-	if *idToDelete != 0 {
-		deleteRecordsWithId(*idToDelete)
+	if *idFlag != 0 {
+		deleteRecordsWithId(*idFlag)
 	}
 
 	showFileContents()
