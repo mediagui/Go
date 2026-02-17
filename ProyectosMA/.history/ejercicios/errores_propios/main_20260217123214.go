@@ -22,10 +22,6 @@ func main() {
 	idFlag := flag.Int("id", 0, "ID del contacto a eliminar")
 	flag.Parse()
 
-	if *idFlag > 0 {
-		log.Println("Id to delete no found. Loading data.")
-	}
-
 	log.Println("Starting...")
 
 	loadContents()
