@@ -3,15 +3,12 @@
 package main
 
 import (
-	"bufio"
-	"bytes"
 	"fmt"
 	"log"
 	"os"
 )
 
 type contactStruct struct {
-	id      int
 	name    string
 	surname string
 }
@@ -20,12 +17,11 @@ func main() {
 
 	log.Println("Starting...")
 
-	loadContents()
-	showFileContents()
+	agenda := loadContents()
+	showFileContents(agenda)
 
 	deleteRecordsWithId(3)
 
-	showFileContents()
 	panicRecover()
 
 	log.Println("End.")
@@ -35,32 +31,14 @@ func main() {
 }
 
 func deleteRecordsWithId(i int) {
-
-	file := openAgenda(true)
+	file := openAgenda(false)
 
 	fileSize := getFileSize(file)
+
 	content := readFileContents(fileSize, file)
-	file.Close()
 
 	contentMap := make(map[int]contactStruct)
-
-	// Parse content and populate contentMap
-	scanner := bufio.NewScanner(bytes.NewReader(content))
-	for scanner.Scan() {
-		var id int
-		var contact contactStruct
-		fmt.Sscanf(scanner.Text(), "%d: %s %s", &id, &contact.name, &contact.surname)
-		if id != i {
-			log.Printf("Adding contact: %v\n", contact)
-			contentMap[id] = contact
-		}
-	}
-	checkError(scanner.Err())
-
-	file = openAgenda()
-	defer file.Close()
-	saveContactsToAgenda(contentMap, file)
-
+	
 }
 
 func readFileContents(fileSize int64, fichero *os.File) []byte {
@@ -78,18 +56,18 @@ func getFileSize(fichero *os.File) int64 {
 	return fileStats.Size()
 }
 
-func loadContents() {
-	agenda := openAgenda(false)
+func loadContents() *os.File {
 	contacts := map[int]contactStruct{}
 	fillContactMap(contacts)
+
+	agenda := createAgenda()
 	saveContactsToAgenda(contacts, agenda)
+	return agenda
 }
 
-func showFileContents() {
-
+func showFileContents(agenda *os.File) {
 	log.Println("Opening file for reading...")
-	agenda := openAgenda(true)
-	defer agenda.Close()
+	agenda = openAgenda()
 
 	log.Println("Showing file contents...")
 	showContentOf(agenda)
@@ -104,6 +82,11 @@ func showContentOf(agenda *os.File) {
 }
 
 func saveContactsToAgenda(contacts map[int]contactStruct, agenda *os.File) {
+
+	agenda, err := os.OpenFile(agenda.Name(), os.O_APPEND|os.O_WRONLY, 0644)
+	checkError(err)
+
+	defer agenda.Close()
 
 	for id, contact := range contacts {
 		line := fmt.Sprintf("%d: %s %s\n", id, contact.name, contact.surname)
@@ -141,7 +124,11 @@ func createAgenda() *os.File {
 func openAgenda(asReadOnly ...bool) *os.File {
 	var perm int
 
-	_readOnly := len(asReadOnly) > 0 && asReadOnly[0]
+	var _readOnly bool = len(asReadOnly) <= 0
+
+	if len(asReadOnly) >= 1 {
+		_readOnly = asReadOnly[0]
+	}
 
 	if _readOnly {
 		perm = os.O_RDONLY
@@ -169,7 +156,6 @@ func buildContact(id int) contactStruct {
 	log.Printf("Building contact %d\n", id)
 
 	return contactStruct{
-		id:      id,
 		name:    fmt.Sprintf("Nombre %d", id),
 		surname: fmt.Sprintf("Apellido %d", id),
 	}

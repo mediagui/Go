@@ -20,12 +20,13 @@ func main() {
 
 	log.Println("Starting...")
 
-	loadContents()
-	showFileContents()
+	agenda := createAgenda()
+	loadContents(agenda)
+	showFileContents(agenda)
 
 	deleteRecordsWithId(3)
 
-	showFileContents()
+	showFileContents(agenda)
 	panicRecover()
 
 	log.Println("End.")
@@ -78,17 +79,19 @@ func getFileSize(fichero *os.File) int64 {
 	return fileStats.Size()
 }
 
-func loadContents() {
-	agenda := openAgenda(false)
+func loadContents(agenda *os.File) {
 	contacts := map[int]contactStruct{}
 	fillContactMap(contacts)
 	saveContactsToAgenda(contacts, agenda)
 }
 
-func showFileContents() {
+func showFileContents(agenda *os.File) {
+	if err := agenda.Close(); err != nil {
+		log.Println(err)
+	}
 
 	log.Println("Opening file for reading...")
-	agenda := openAgenda(true)
+	agenda = openAgenda(true)
 	defer agenda.Close()
 
 	log.Println("Showing file contents...")

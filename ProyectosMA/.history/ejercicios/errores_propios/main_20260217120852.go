@@ -8,6 +8,8 @@ import (
 	"fmt"
 	"log"
 	"os"
+
+	"github.com/daixiang0/gci/pkg/io"
 )
 
 type contactStruct struct {
@@ -20,12 +22,15 @@ func main() {
 
 	log.Println("Starting...")
 
-	loadContents()
-	showFileContents()
+	agenda := createAgenda()
+	loadContents(agenda)
+	showFileContents(agenda)
 
-	deleteRecordsWithId(3)
+	agenda = openAgenda()
+	deleteRecordsWithId(agenda, 3)
 
-	showFileContents()
+	showFileContents(agenda)
+
 	panicRecover()
 
 	log.Println("End.")
@@ -35,12 +40,10 @@ func main() {
 }
 
 func deleteRecordsWithId(i int) {
-
-	file := openAgenda(true)
-
+	file := openAgenda()
 	fileSize := getFileSize(file)
 	content := readFileContents(fileSize, file)
-	file.Close()
+	defer file.Close()
 
 	contentMap := make(map[int]contactStruct)
 
@@ -57,8 +60,6 @@ func deleteRecordsWithId(i int) {
 	}
 	checkError(scanner.Err())
 
-	file = openAgenda()
-	defer file.Close()
 	saveContactsToAgenda(contentMap, file)
 
 }
@@ -78,17 +79,15 @@ func getFileSize(fichero *os.File) int64 {
 	return fileStats.Size()
 }
 
-func loadContents() {
-	agenda := openAgenda(false)
+func loadContents(agenda io.File) {
 	contacts := map[int]contactStruct{}
 	fillContactMap(contacts)
 	saveContactsToAgenda(contacts, agenda)
 }
 
-func showFileContents() {
-
+func showFileContents(agenda *os.File) {
 	log.Println("Opening file for reading...")
-	agenda := openAgenda(true)
+	agenda = openAgenda(true)
 	defer agenda.Close()
 
 	log.Println("Showing file contents...")
