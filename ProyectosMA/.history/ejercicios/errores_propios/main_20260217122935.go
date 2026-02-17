@@ -19,11 +19,7 @@ type contactStruct struct {
 
 func main() {
 
-	idFlag := flag.Int("id", 0, "ID del contacto a eliminar")
-	flag.Parse()
-
-	if *idFlag > 0 {
-		log.Println("Id to delete no found. Loading data.")
+	if len(os.Args) > 0 {
 	}
 
 	log.Println("Starting...")
@@ -31,9 +27,7 @@ func main() {
 	loadContents()
 	showFileContents()
 
-	if *idFlag != 0 {
-		deleteRecordsWithId(*idFlag)
-	}
+	deleteRecordsWithId(3)
 
 	showFileContents()
 	panicRecover()
