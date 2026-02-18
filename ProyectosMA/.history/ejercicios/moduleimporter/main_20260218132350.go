@@ -1,6 +1,6 @@
 package main
 
-import saludo "moduletoimport"
+import "moduletoimport/saludo"
 
 func main() {
 	saludo.Greeting()
