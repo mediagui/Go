@@ -5,12 +5,28 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch File",
+            "name": "Launch Folder",
             "type": "go",
             "request": "launch",
             "mode": "auto",
             "program": "${fileDirname}",
             "console": "integratedTerminal",
+            "args": [
+                "-id",
+                "3"
+            ]
+        },
+        {
+            "name": "Launch File with param",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": [
+                "-id",
+                "3"
+            ]
         }
     ]
 }
