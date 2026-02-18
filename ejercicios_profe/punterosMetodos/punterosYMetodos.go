@@ -9,11 +9,12 @@ type Persona struct {
 	Nombre            string
 	Edad              int
 	CorreoElectronico string
+	DNI               string
 }
 
 // Método para que la persona salude.
 func (p *Persona) DiHola() {
-	fmt.Println("Hola, mi nombre es: ", p.Nombre)
+	fmt.Println("Hola, mi nombre es: ", p.Nombre, "\nmi edad es: ", p.Edad, "\nmi correo es: ", p.CorreoElectronico, "\nY mi DNI: ", p.DNI)
 }
 
 // Función para la explicación de punteros y métodos
@@ -83,7 +84,12 @@ func ExplicacionPunterosMetodos() {
 	*/
 
 	// Defino una persona.
-	persona1 := Persona{"Diego", 68, "tuDieguito69@hotmail.es"}
+	persona1 := Persona{
+		Nombre:            "Diego",
+		Edad:              68,
+		CorreoElectronico: "tuDieguito69@hotmail.es",
+		DNI:               "411234B",
+	}
 	fmt.Println(persona1)
 
 	persona1.DiHola()
