@@ -45,5 +45,13 @@
             "bold": false,
             "italic": false
         }
-    ]
+    ],
+    "search.exclude": {
+        "**/.history": true,
+        "**/.history/**": true
+    },
+    "files.exclude": {
+        "**/.history": true,
+        "**/.history/**": true
+    }
 }
