@@ -6,10 +6,20 @@
 // v Modelo.
 // v Matrícula.
 // v Año del modelo.
+
 // Se deberán especificar las acciones para cada coche:
 // v  Arrancar.
 // v  Frenar.
 // v  Claxon.
 package main
 
-func main() {}
+import "dto"
+
+func main() {
+
+	var v dto.Vehiculo
+
+	vVehiculo := dto.NewVehiculo(v)
+	_ = vVehiculo
+
+}
