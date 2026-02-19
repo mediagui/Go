@@ -1,54 +1,149 @@
-// Declasro el paquete al que pertenece el archivo.
+// Paquete al que pertenece
 package agradecimientos
 
-// Importaciones
+// Importaciones.
 import (
-	"regexp"  // Me permite trabajar con expresiones regulares.
-	"testing" // Paqute necesarioo para realizar prueba en go.
+	"regexp"
+	"testing"
 )
 
-// Función para probar el saludo.
+/*
+Para crear funciones de prueba, el nombre de la función debe empezar por la palabra [Test] (TestNombreFuncion). Cuando creamos las funciones de prueba, estas reciben un objeto de tipo "testing". Por lo que en este caso, tendrémos como parámetro una variable [t], que almacenará un puntero a [*testing.T], este objeto nos sirve para reportar el resultado de la prueba.
+*/
+
+// Función de prueba para la función [Hola()], que recibe un nombre y devuelve un saludo.
 func TestHolaNombre(t *testing.T) {
-	// Defino el nombre que espero encontrar en el saludo
-	nombre := "Rigorbeto"
-
-	// Creo una expresión regular que busca el nombnre dentro del mensaje.
 	/*
-		[regexp.MustCompile] compila la expresión y falla si es inválida.
-		[\b] Indica el límite de la palabra, evita "falsos positivos" como "Rigorbeto123"
-	*/
-	quiero := regexp.MustCompile(`\b` + nombre + `\b`)
+		Parámetros del paquete testing.
 
-	// Llamo a la funcion Hola, pasándo el nombre almacenado en la variable.
-	msg, err := Hola("")
+		[testing.T] (Test)
 
-	/*
-		Aquí haré dos comprobaciones:
-		1. Que el mensaje contenga el nombre usado en la expresión regular.
-		2. Que no haya ocurrido ningún error.
+			Su función es verificar la lógica y corrección del código. Si algo no da el resultado esperado, marca el test como "fallido"
+
+		[testing.B] (Benchmark)
+
+			Se utiliza para medir el rendimiento. Ejecuta el código muchas veces para decirnos cuántos nanosegundos tarda en cada operación.
+
+		[testing.F] (Fuzz)
+
+			"Experto en resitencia". Genera datos aleatorios y "extrañós" automáticamente para intentar encontrar errores de seguridad o casos límite que al programador se le haya pasado por alto.
+
+		[testing.M] (Main)
+
+			Se usa para configurar el entorno antes de que corra cualquier prueba (como conectar una base de datos) y limpiar todo al finalizar.
 	*/
-	if !quiero.MatchString(msg) || err != nil {
-		// Si algo falla, utilizo un [Fatalf] para detener la prueba y muestro un mensaje detallado.
-		t.Fatalf(`Hola("Rigorbeto") = %q, %v, quiere para %#q, nil`, msg, err, quiero)
-		/*
-			[%q]	-> Imprime una cadena entre comillas, escapando caracteres especiales.
-			[%v]	-> Imprime el valor "tal cual".
-			[%#q]	-> Imprime una cadena entre comillas y con "formato Go", útil para ver exáctamente cómo está construida la expresión.
-		*/
+	// Preparo el sujeto de prueba.
+	nombre := "Sergio"
+
+	// Configuro la búsqueda con una expresión regulat. [\b] asegura que busque la palabra exacta.
+	require := regexp.MustCompile(`\b` + nombre + `\b`)
+
+	// Invoco a la función [Hola()] y capturo tanto su respuesta como cualquier posible error.
+	msg, err := Hola("Sergio")
+
+	// Analizo el resultado: si el nombre no coincide o si la función devuelve un error inesperado, hago un [Fatal] y detengo la prueba, generando un informe.
+	if !require.MatchString(msg) || err != nil {
+		t.Fatalf(`Hola("Sergio") = %q, %v, quiere coincidencia para %#q, nil`, msg, err, require)
 	}
-}
-
-// Función que llama a [agradecimientos.Hola] con una cadena vacía y verifica que se devuelva un error.
-func TestHelloEmpty(t *testing.T) {
-	// Llamo a [hola] con un string vacío.
-	msg, err := Hola("")
 	/*
-		Verifico dos cosas:
-		1. Que el mensaje devuelto esté vacío.
-		2. Que se haya devuelto un error.
+		Resumen de "Verbos" de Formato en Fatalf
+
+		[%q]
+
+			Envuelve el texto en comillas para detectar espacios invisibles o cadenas vacías.
+
+		[%v]
+
+			Muestra el valor del erro de forma natural
+
+		[%#q]
+
+			Muestra la expresión regular tal cual está escrita en el código para depurar el patrón.
 	*/
+} // Si llego aquí sin errores, el visto bueno al código.
+
+// Prueba para casos vacíos. Quiero verificar que el sistema "sepa quejarse" cuando no recibe datos.
+func TestHolaVacio(t *testing.T) {
+	// Creo un "cebo" vacío con la función [Hola()].
+	msg, err := Hola("")
+	// La logica que utilizo aquí es la inversa a la anterior. Si devuelve un mensaje (no está vacío) o si NO hay error (es nil), emito un "fallo fatal".
 	if msg != "" || err == nil {
-		// Ai no se cumple lo esperado, la prueba falla.
 		t.Fatalf(`Hola("") = %q, %v, quiere "", error`, msg, err)
 	}
-}
+} // Si la función falló como debía, considero que he terminado con éxito.
+
+// Paquete al que pertenece
+// package agradecimientos
+
+// // Importaciones.
+// import (
+// 	"regexp"
+// 	"testing"
+// )
+
+// /*
+// Para crear funciones de prueba, el nombre de la función debe empezar por la palabra [Test] (TestNombreFuncion). Cuando creamos las funciones de prueba, estas reciben un objeto de tipo "testing". Por lo que en este caso, tendrémos como parámetro una variable [t], que almacenará un puntero a [*testing.T], este objeto nos sirve para reportar el resultado de la prueba.
+// */
+
+// // Función de prueba para la función [Hola()], que recibe un nombre y devuelve un saludo.
+// func TestHolaNombre(t *testing.T) {
+// 	/*
+// 		Parámetros del paquete testing.
+
+// 		[testing.T] (Test)
+
+// 			Su función es verificar la lógica y corrección del código. Si algo no da el resultado esperado, marca el test como "fallido"
+
+// 		[testing.B] (Benchmark)
+
+// 			Se utiliza para medir el rendimiento. Ejecuta el código muchas veces para decirnos cuántos nanosegundos tarda en cada operación.
+
+// 		[testing.F] (Fuzz)
+
+// 			"Experto en resitencia". Genera datos aleatorios y "extrañós" automáticamente para intentar encontrar errores de seguridad o casos límite que al programador se le haya pasado por alto.
+
+// 		[testing.M] (Main)
+
+// 			Se usa para configurar el entorno antes de que corra cualquier prueba (como conectar una base de datos) y limpiar todo al finalizar.
+// 	*/
+// 	// Preparo el sujeto de prueba.
+// 	nombre := "Sergio"
+
+// 	// Configuro la búsqueda con una expresión regulat. [\b] asegura que busque la palabra exacta.
+// 	require := regexp.MustCompile(`\b` + nombre + `\b`)
+
+// 	// SABOTAJE 1: Le pido un saludo para "Carlos", cuando el espera "Sergio".
+// 	// Invoco a la función [Hola()] y capturo tanto su respuesta como cualquier posible error.
+// 	msg, err := Hola("Carlos")
+
+// 	// Analizo el resultado: si el nombre no coincide o si la función devuelve un error inesperado, hago un [Fatal] y detengo la prueba, generando un informe.
+// 	if !require.MatchString(msg) || err != nil {
+// 		t.Fatalf(`Hola("Sergio") = %q, %v, quiere coincidencia para %#q, nil`, msg, err, require)
+// 	}
+// 	/*
+// 		Resumen de "Verbos" de Formato en Fatalf
+
+// 		[%q]
+
+// 			Envuelve el texto en comillas para detectar espacios invisibles o cadenas vacías.
+
+// 		[%v]
+
+// 			Muestra el valor del erro de forma natural
+
+// 		[%#q]
+
+// 			Muestra la expresión regular tal cual está escrita en el código para depurar el patrón.
+// 	*/
+// } // Si llego aquí sin errores, el visto bueno al código.
+
+// // Prueba para casos vacíos. Quiero verificar que el sistema "sepa quejarse" cuando no recibe datos.
+// func TestHolaVacio(t *testing.T) {
+// 	// Sabotaje 2: Le envío un nombre válido ("Sergio") a la prueba que debería estar vacía.
+// 	// Creo un "cebo" vacío con la función [Hola()].
+// 	msg, err := Hola("Sergio") // Devolverá un mensaje y NO  devolverá error (err será [nil])
+// 	// La logica que utilizo aquí es la inversa a la anterior. Si devuelve un mensaje (no está vacío) o si NO hay error (es nil), emito un "fallo fatal".
+// 	if msg != "" || err == nil {
+// 		t.Fatalf(`Hola("") = %q, %v, quiere "", error`, msg, err)
+// 	}
+// } // Si la función falló como debía, considero que he terminado con éxito.
