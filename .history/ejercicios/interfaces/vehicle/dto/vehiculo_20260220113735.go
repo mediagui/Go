@@ -53,7 +53,7 @@ func (v *Vehicle) StopEngine() {
 	log.Println("Engine stopped for vehicle", v.Plate)
 }
 
-func (v Vehicle) MakeSound() {
+func (v Vehicle) makeSound() {
 	beeep.Beep(beeep.DefaultFreq, beeep.DefaultDuration)
 }
 

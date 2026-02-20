@@ -4,8 +4,6 @@ package dto
 import (
 	"fmt"
 	"log"
-
-	"github.com/gen2brain/beeep"
 )
 
 // Vehicle type constants define the different types of vehicles supported.
@@ -32,30 +30,12 @@ type Vehicle struct {
 	Year uint16
 	// Vehicle identification
 	Plate string
-	// Vehicle status
-	EngineStarted bool
 }
 
-// Starts the vehicle engine
-func (v *Vehicle) StartEngine() {
-	log.Println("Starting engine")
-	v.EngineStarted = true
-	log.Println("Engine started for vehicle", v.Plate)
-
-	log.Println("Brum, Brum!!")
-
+func (v *Vehicle) Arrancar() {
+	log.Println("Arrancando el vehículo", v.Plate)
 }
 
-// Stops the vehicle engine
-func (v *Vehicle) StopEngine() {
-	log.Println("Stopping engine")
-	v.EngineStarted = false
-	log.Println("Engine stopped for vehicle", v.Plate)
-}
-
-func (v Vehicle) MakeSound() {
-	beeep.Beep(beeep.DefaultFreq, beeep.DefaultDuration)
-}
 
 // String returns the string representation of the Vehicle.
 // It implements the fmt.Stringer interface by delegating to VehicleType.String().

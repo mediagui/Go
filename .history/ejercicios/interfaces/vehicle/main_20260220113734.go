@@ -26,11 +26,11 @@ func main() {
 
 	startEngines(vehiculos)
 
-	makeClaxonSound(vehiculos)
-
 	stopEngines(vehiculos)
 
+
 }
+
 
 func startEngines(vehiculos map[string]dto.Vehicle) {
 	for _, v := range vehiculos {
@@ -46,7 +46,7 @@ func stopEngines(vehiculos map[string]dto.Vehicle) {
 
 func makeClaxonSound(vehiculos map[string]dto.Vehicle) {
 	for _, v := range vehiculos {
-		v.MakeSound()
+		v.makeSound()
 	}
 }
 

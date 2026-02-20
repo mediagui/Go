@@ -4,8 +4,6 @@ package dto
 import (
 	"fmt"
 	"log"
-
-	"github.com/gen2brain/beeep"
 )
 
 // Vehicle type constants define the different types of vehicles supported.
@@ -51,10 +49,6 @@ func (v *Vehicle) StopEngine() {
 	log.Println("Stopping engine")
 	v.EngineStarted = false
 	log.Println("Engine stopped for vehicle", v.Plate)
-}
-
-func (v Vehicle) MakeSound() {
-	beeep.Beep(beeep.DefaultFreq, beeep.DefaultDuration)
 }
 
 // String returns the string representation of the Vehicle.

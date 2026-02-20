@@ -26,8 +26,6 @@ func main() {
 
 	startEngines(vehiculos)
 
-	makeClaxonSound(vehiculos)
-
 	stopEngines(vehiculos)
 
 }
