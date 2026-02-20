@@ -16,13 +16,13 @@ const (
 // Vehiculo represents a vehicle with its type, brand, model, and year.
 type Vehiculo struct {
 	// Tipo is the type of vehicle (car, truck, motorcycle, etc.)
-	Tipo TipoVehiculo
+	Tipo   TipoVehiculo
 	// Marca is the brand/make of the vehicle
-	Marca string
+	Marca  string
 	// Modelo is the model name of the vehicle
 	Modelo string
 	// Anio is the year of the vehicle model
-	Anio uint16
+	Anio   uint16
 }
 
 // String returns the string representation of the Vehiculo.
