@@ -23,6 +23,8 @@ func main() {
 func buildVehiculos() map[string]dto.Vehiculo {
 	vehiculos := make(map[string]dto.Vehiculo)
 
+
+
 	coche := dto.NewVehiculo(dto.Vehiculo{
 		Tipo:   dto.Automovil,
 		Marca:  "Toyota",
