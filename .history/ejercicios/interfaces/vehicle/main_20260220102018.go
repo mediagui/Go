@@ -13,40 +13,53 @@
 // v  Claxon.
 package main
 
-import "vehiculo/dto"
+import (
+	"log"
+	"vehiculo/dto"
+)
 
 func main() {
 
-	buildVehiculos()
+	vehiculos := buildVehicles()
+
+	for _, v := range vehiculos {
+
+		log.Printf("Vehicle: %v", v)
+
+	}
+
 }
 
-func buildVehiculos() map[string]dto.Vehiculo {
-	vehiculos := make(map[string]dto.Vehiculo)
+func buildVehicles() map[string]dto.Vehicle {
+	vehiculos := make(map[string]dto.Vehicle)
 
-	coche := dto.NewVehiculo(dto.Vehiculo{
-		Tipo:   dto.Automovil,
+	coche := dto.NewVehiculo(dto.Vehicle{
+		Tipo:   dto.Car,
 		Marca:  "Toyota",
 		Modelo: "Corolla",
 		Anio:   uint16(2020),
 	})
 
-	println(coche.Tipo, coche.Marca, coche.Modelo, coche.Anio)
-
-	camion := dto.NewVehiculo(dto.Vehiculo{
+	camion := dto.NewVehiculo(dto.Vehicle{
 		Tipo:   dto.Camion,
 		Marca:  "Pegaso",
 		Modelo: "Troner",
 		Anio:   uint16(1985),
 	})
 
-	println(camion)
-
-	moto := dto.NewVehiculo(dto.Vehiculo{
+	moto := dto.NewVehiculo(dto.Vehicle{
 		Tipo:   dto.Motocicleta,
 		Marca:  "Honda",
 		Modelo: "CBR",
 		Anio:   uint16(1990),
 	})
 
-	println(moto)
+	vehiculos[coche.Tipo.String()] = *coche
+	log.Println("Adding a", coche.Tipo.String())
+	vehiculos[camion.Tipo.String()] = *camion
+	log.Println("Adding a", camion.Tipo.String())
+	vehiculos[moto.Tipo.String()] = *moto
+	log.Println("Adding a", moto.Tipo.String())
+
+	return vehiculos
 }

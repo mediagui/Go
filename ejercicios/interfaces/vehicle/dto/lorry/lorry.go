@@ -1,9 +1,9 @@
-package camion
+package lorry
 
-import "vehiculo/dto"
+import "vehicle/dto"
 
 type Trailer struct {
-	dto.Vehiculo
+	dto.Vehicle
 	Matricula string
 	Plazas    int
 	Carga     uint
