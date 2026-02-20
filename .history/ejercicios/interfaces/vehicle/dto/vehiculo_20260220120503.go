@@ -57,17 +57,11 @@ func (v Vehicle) MakeSound() {
 	switch v.Type {
 	case Lorry:
 		// Truck: lower frequency and longer duration
-		beeep.Beep(600, 600)
-	case Car:
-		beeep.Beep(800, 600)
-	case Motorcycle:
-		beeep.Beep(1000, 600)
+		beeep.Beep(200, 500)
 	default:
 		// Standard sound for other vehicles
 		beeep.Beep(beeep.DefaultFreq, beeep.DefaultDuration)
 	}
-
-	log.Println("A ", v.Type.String(), "is beeping")
 }
 
 // String returns the string representation of the Vehicle.

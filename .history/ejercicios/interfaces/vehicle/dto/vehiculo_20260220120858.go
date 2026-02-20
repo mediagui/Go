@@ -66,8 +66,6 @@ func (v Vehicle) MakeSound() {
 		// Standard sound for other vehicles
 		beeep.Beep(beeep.DefaultFreq, beeep.DefaultDuration)
 	}
-
-	log.Println("A ", v.Type.String(), "is beeping")
 }
 
 // String returns the string representation of the Vehicle.
