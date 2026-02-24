@@ -20,7 +20,7 @@ const (
 	Skateboard
 )
 
-type Driver interface {
+type Driveable interface {
 	StartEngine()
 	StopEngine()
 	MakeSound()

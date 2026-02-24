@@ -42,6 +42,16 @@ type Vehicle struct {
 	EngineStarted bool
 }
 
+// StartEngine implements [Driver].
+func (v Vehicle) StartEngine() {
+	panic("unimplemented")
+}
+
+// StopEngine implements [Driver].
+func (v Vehicle) StopEngine() {
+	panic("unimplemented")
+}
+
 // Starts the vehicle engine
 func (v *Vehicle) StartEngine() {
 	log.Println("Starting engine")

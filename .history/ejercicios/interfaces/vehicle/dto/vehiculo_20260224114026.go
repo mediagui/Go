@@ -20,11 +20,12 @@ const (
 	Skateboard
 )
 
-type Driver interface {
+type driveable interface{
 	StartEngine()
 	StopEngine()
 	MakeSound()
 }
+
 
 // Vehicle represents a vehicle with its type, brand, model, and year.
 type Vehicle struct {

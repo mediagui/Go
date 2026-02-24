@@ -20,7 +20,7 @@ import (
 
 func main() {
 
-	vehiculos := buildDrivers()
+	vehiculos := buildVehicles()
 
 	printVehicleDetails(vehiculos)
 
@@ -32,19 +32,19 @@ func main() {
 
 }
 
-func startEngines(vehiculos map[string]dto.Driver) {
+func startEngines(vehiculos map[string]dto.Vehicle) {
 	for _, v := range vehiculos {
 		v.StartEngine()
 	}
 }
 
-func stopEngines(vehiculos map[string]dto.Driver) {
+func stopEngines(vehiculos map[string]dto.Vehicle) {
 	for _, v := range vehiculos {
 		v.StopEngine()
 	}
 }
 
-func makeClaxonSound(vehiculos map[string]dto.Driver) {
+func makeClaxonSound(vehiculos map[string]dto.Vehicle) {
 	for _, v := range vehiculos {
 		v.MakeSound()
 	}
@@ -56,44 +56,6 @@ func printVehicleDetails(vehiculos map[string]dto.Driver) {
 		log.Printf("Vehicle: %v", v)
 
 	}
-}
-
-func buildDrivers() map[string]dto.Driver {
-
-	vehiculos := make(map[string]dto.Driver)
-
-	coche := dto.NewVehicle(dto.Vehicle{
-		Type:  dto.Car,
-		Brand: "Toyota",
-		Model: "Corolla",
-		Year:  uint16(2020),
-		Plate: "4866-BRJ",
-	})
-
-	camion := dto.NewVehicle(dto.Vehicle{
-		Type:  dto.Lorry,
-		Brand: "Pegaso",
-		Model: "Troner",
-		Year:  uint16(1985),
-		Plate: "1234-ABC",
-	})
-
-	moto := dto.NewVehicle(dto.Vehicle{
-		Type:  dto.Motorcycle,
-		Brand: "Honda",
-		Model: "CBR",
-		Year:  uint16(1990),
-		Plate: "5678-DEF",
-	})
-
-	vehiculos[coche.Type.String()] = coche
-	log.Println("Adding a", coche.Type.String())
-	vehiculos[camion.Type.String()] = camion
-	log.Println("Adding a", camion.Type.String())
-	vehiculos[moto.Type.String()] = moto
-	log.Println("Adding a", moto.Type.String())
-
-	return vehiculos
 }
 
 func buildVehicles() map[string]dto.Vehicle {

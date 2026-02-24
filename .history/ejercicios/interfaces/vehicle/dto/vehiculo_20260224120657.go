@@ -42,6 +42,7 @@ type Vehicle struct {
 	EngineStarted bool
 }
 
+
 // Starts the vehicle engine
 func (v *Vehicle) StartEngine() {
 	log.Println("Starting engine")
