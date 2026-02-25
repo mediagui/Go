@@ -10,18 +10,25 @@ import (
 	"fmt"
 	"math/rand"
 	"runtime"
+	"sync"
 )
 
 func main() {
 
 	numeroGoroutines := runtime.NumCPU() * 1000
+	// Slice para almacenar la cantidad de sumas definicias, que será igual al número de goroutines
+	// sliceSumas := make([]int, 0, numeroGoroutines)
+
+	wg := sync.WaitGroup{}
+
+	wg.Add(numeroGoroutines)
 
 	// Canal para recibir los resultados de las goroutines
 	resultados := make(chan int, numeroGoroutines)
 
 	// Lanzar 3 goroutines
 	for i := 1; i <= numeroGoroutines; i++ {
-		go calculaSumaEscribeEnCanal(i, resultados)
+		go calculaSumaEscribeEnCanal(i, resultados, &wg)
 	}
 
 	// Recoger los tres resultados y sumarlos
@@ -29,6 +36,7 @@ func main() {
 
 	fmt.Printf("\nSuma total de los %d resultados: %d\n", numeroGoroutines, totalSuma)
 
+	wg.Wait()
 }
 
 func calculaSumaTotalLeyendoDelCanal(numeroGoruintas int, resultados chan int) int {
@@ -42,8 +50,8 @@ func calculaSumaTotalLeyendoDelCanal(numeroGoruintas int, resultados chan int) i
 }
 
 // calculaSumaEscribeEnCanal calcula la suma de un rango de números y la envía por el canal
-func calculaSumaEscribeEnCanal(id int, ch chan<- int) {
-
+func calculaSumaEscribeEnCanal(id int, ch chan<- int, wg *sync.WaitGroup) {
+	defer wg.Done()
 	// Generar rango de números
 	cantidadDeNumeros := rand.Intn(100)
 	numeros := generaNumeros(cantidadDeNumeros)
@@ -59,6 +67,7 @@ func calculaSumaEscribeEnCanal(id int, ch chan<- int) {
 	// Enviar resultado por el canal
 	ch <- suma
 
+	wg.Done()
 }
 
 // generaNumeros genera un slice de números aleatorios

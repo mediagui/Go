@@ -14,26 +14,26 @@ import (
 
 func main() {
 
-	numeroGoroutines := runtime.NumCPU() * 1000
+	numeroGoruintas := runtime.NumCPU() * 1000
 
 	// Canal para recibir los resultados de las goroutines
-	resultados := make(chan int, numeroGoroutines)
+	resultados := make(chan int, numeroGoruintas)
 
 	// Lanzar 3 goroutines
-	for i := 1; i <= numeroGoroutines; i++ {
-		go calculaSumaEscribeEnCanal(i, resultados)
+	for i := 1; i <= numeroGoruintas; i++ {
+		go calcularSuma(i, resultados)
 	}
 
 	// Recoger los tres resultados y sumarlos
-	totalSuma := calculaSumaTotalLeyendoDelCanal(numeroGoroutines, resultados)
 
-	fmt.Printf("\nSuma total de los %d resultados: %d\n", numeroGoroutines, totalSuma)
+	totalSuma := calculaSuma(numeroGoruintas, resultados)
 
+	fmt.Printf("\nSuma total de los %d resultados: %d\n", numeroGoruintas, totalSuma)
 }
 
-func calculaSumaTotalLeyendoDelCanal(numeroGoruintas int, resultados chan int) int {
+func calculaSuma(numeroGoruintas int, resultados chan int) int {
 	var suma int
-	for i := 0; i < numeroGoruintas; i++ {
+	for i := range numeroGoruintas {
 		resultado := <-resultados
 		fmt.Printf("Resultado de goroutine %d: %d\n", i+1, resultado)
 		suma += resultado
@@ -41,9 +41,8 @@ func calculaSumaTotalLeyendoDelCanal(numeroGoruintas int, resultados chan int) i
 	return suma
 }
 
-// calculaSumaEscribeEnCanal calcula la suma de un rango de números y la envía por el canal
-func calculaSumaEscribeEnCanal(id int, ch chan<- int) {
-
+// calcularSuma calcula la suma de un rango de números y la envía por el canal
+func calcularSuma(id int, ch chan<- int) {
 	// Generar rango de números
 	cantidadDeNumeros := rand.Intn(100)
 	numeros := generaNumeros(cantidadDeNumeros)
@@ -58,7 +57,6 @@ func calculaSumaEscribeEnCanal(id int, ch chan<- int) {
 
 	// Enviar resultado por el canal
 	ch <- suma
-
 }
 
 // generaNumeros genera un slice de números aleatorios
