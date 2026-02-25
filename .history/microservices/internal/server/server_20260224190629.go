@@ -1,0 +1,33 @@
+package server
+
+import (
+	"net/http"
+
+	"github.com/labstack/echo/v4"
+	"github.com/mediagui/go-microservies/internal/database"
+)
+
+type Server interface {
+	Start() error
+}
+
+type EchoServer struct {
+	echo *echo.Echo
+	DB   database.DatabaseClient
+}
+
+func NewEchoServer(echo *echo.Echo, db database.DatabaseClient) *EchoServer {
+	server := &EchoServer{
+		echo: echo,
+		DB:   db,
+	}
+	server.registerRoutes()
+	return server
+}
+
+func (s *EchoServer) Start() error {
+	if err := s.echo.Start(":8080"); err != nil && err != http.ErrServerClosed {
+		return err
+	}
+	return nil
+}

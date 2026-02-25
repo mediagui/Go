@@ -1,0 +1,15 @@
+# Dockerfile to run up a PostgreSQL database
+FROM postgres:16-alpine
+
+# Environment variables for PostgreSQL configuration
+ENV POSTGRES_USER=postgres
+ENV POSTGRES_PASSWORD=postgres
+ENV POSTGRES_DB=mydatabase
+
+# Expose PostgreSQL port
+EXPOSE 5432
+
+# Volume for persistent data
+VOLUME ["/var/lib/postgresql/data"]
+
+# The postgres image already has the proper CMD to start the database
