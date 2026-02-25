@@ -9,29 +9,27 @@ import (
 
 func main() {
 
-	_maxGoroutinesToExecute := 1000
-
 	wg := sync.WaitGroup{}
-	wg.Add(_maxGoroutinesToExecute)
+	wg.Add(1000)
 
 	slice := make([]string, 0)
 	mutex := sync.RWMutex{}
 
-	for i := range _maxGoroutinesToExecute {
+	for i := range 1000 {
 		go writeToSlice(&slice, "Valor "+string(rune(i+65)), &mutex, &wg)
 	}
 
 	log.Println("Tamaño del slice: ", len(slice))
 
 	// Canal para recibir los valores
-	resultChannel := make(chan string, _maxGoroutinesToExecute)
+	resultChannel := make(chan string, 1000)
 
-	for range _maxGoroutinesToExecute {
+	for range 1000 {
 		go readFromSlice(&slice, &mutex, resultChannel)
 	}
 
 	// Leer e imprimir los valores del canal
-	for range _maxGoroutinesToExecute {
+	for range 1000 {
 		value := <-resultChannel
 		fmt.Println("Valor leido:", value)
 	}
