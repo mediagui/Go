@@ -33,7 +33,7 @@ func main() {
 
 func calculaSumaTotalLeyendoDelCanal(numeroGoruintas int, resultados chan int) int {
 	var suma int
-	for i := range numeroGoruintas {
+	for i := 0; i < numeroGoruintas; i++ {
 		resultado := <-resultados
 		fmt.Printf("Resultado de goroutine %d: %d\n", i+1, resultado)
 		suma += resultado
