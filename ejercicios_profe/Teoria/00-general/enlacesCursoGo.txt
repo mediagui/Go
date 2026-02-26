@@ -1,0 +1,27 @@
+Enlace a la plataforma.
+→ https://www.miaulaonline.net
+
+Enlace para compartir pantalla.
+→ https://meet.jit.si/CursoProgramacionGo
+
+Enlace a página de libros gratuitos.
+→ https://books.goalkicker.com/
+
+Enlace a picpick
+→ https://picpick.app/es/download/
+
+Enlace a "atajos de teclado", para símbolos con
+alt + padNumerico:
+→ https://symbl.cc/es/alt-codes/
+
+Enlace a la explicación de BEM.
+→ https://www.arsys.es/blog/bem-guia-completa-para-css-modular-con-ejemplos
+
+Enlace bootswatch
+→ https://bootswatch.com/
+
+Enlace playground de Go. (para probar el código)
+→ https://go.dev/play/
+
+Enlace a documentación de Go (Michel)
+→ https://www.practical-go-lessons.com/

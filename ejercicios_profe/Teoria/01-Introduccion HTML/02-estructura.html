@@ -1,0 +1,104 @@
+<!-- Vamos a crear un programa HTML, con la estructura básica que suele tener.
+Escribiendo 3 ! y pulsando enter, se creará la etiqueta [<!DOCTYPE html>] automáticamente. (En caso de que no aparezca la sugerencia, podemos pulsar [ctr+espacio])
+-->
+<!doctype html>
+<!-- Inicio del documento [<html></html>] -->
+<html>
+  <!-- head INICIO -->
+  <head>
+    <!-- Indico la codificación de caracteres que voy a utilizar. -->
+    <meta charset="utf-8" />
+    <!-- Indico el título de la página. -->
+    <title>Estructura HTML5</title>
+  </head>
+  <!-- head FIN -->
+  <!-- body INICIO -->
+  <body>
+    <!--
+    Es importante tener bien estructurada nuestra página web con las diferentes secciones que nos ofrece HTML5, dividiéndola en:
+    
+    → [<header></header>]
+    → [<nav></nav>]
+    → [<main></main>]
+    → [<aside></aside>]
+    → [<footer></footer>]
+
+    Esto es importante para que se posicione mejor nuestra aplicación web en los navegadores (Posicionamiento SEO).
+    -->
+    <!-- cabecera INICIO -->
+    <header>
+      <!-- Dentro de esta etiqueta, debermos poner el título de nuestra web, el logo, a veces el menú de navegación, etc... -->
+      <!-- Encabezado de 1er nivel a modo de título -->
+      <h1>Estructura HTML5</h1>
+      <!-- Barra/Menú de navegación. Este puede estar dentro o fuera del [<header></header>] -->
+      <nav>
+        <!-- Aquí dentro habría una lista modificada con CSS -->
+      </nav>
+    </header>
+    <!-- cabecera FIN -->
+    <!-- Línea horizontal a modo de separación. -->
+    <hr />
+    <!-- Contenido principal de la página ([<main></main>]) INICIO -->
+    <main>
+      <!-- Dentro de esta etiqueta, colocaremos todo el contenido principal de la aplicación web. -->
+      <!-- Creo un contenedor vacío. -->
+      <div>
+        <!-- Contenido de la caja genérica. -->
+      </div>
+      <!-- Sección donde podremos insertar artículos. -->
+      <section>
+        <!-- ARTÍCULOS. -->
+        <article>
+          <!-- Encabezado de 2º nivel. -->
+          <h2>Título del artículo</h2>
+          <!-- Utilizo una etiqueta [<span></span>] para indicar la categoría. -->
+          <span>Programación</span>
+          <!-- Utilizo una etiqueta específica para indicar la fecha. -->
+          <time>20-01-2026</time>
+          <!-- Párrafo a modo de descripción del artículo. -->
+          <p>Esto es un artículo de prueba.</p>
+        </article>
+        <!-- Creo dos artículos más -->
+        <article>
+          <!-- Encabezado de 2º nivel. -->
+          <h2>Título del artículo</h2>
+          <!-- Utilizo una etiqueta [<span></span>] para indicar la categoría. -->
+          <span>Programación</span>
+          <!-- Utilizo una etiqueta específica para indicar la fecha. -->
+          <time>20-01-2026</time>
+          <!-- Párrafo a modo de descripción del artículo. -->
+          <p>Esto es un artículo de prueba.</p>
+        </article>
+        <article>
+          <!-- Encabezado de 2º nivel. -->
+          <h2>Título del artículo</h2>
+          <!-- Utilizo una etiqueta [<span></span>] para indicar la categoría. -->
+          <span>Programación</span>
+          <!-- Utilizo una etiqueta específica para indicar la fecha. -->
+          <time>20-01-2026</time>
+          <!-- Párrafo a modo de descripción del artículo. -->
+          <p>Esto es un artículo de prueba.</p>
+        </article>
+      </section>
+    </main>
+    <!-- Main FIN -->
+    <!-- Fuera del [<main></main>], puedo poner antes del [<footer></footer>], un [<aside></aside>] o barra lateral. -->
+    <!-- Barra lateral INICIO -->
+    <aside>
+      <!-- Contenido de la barra lateral. -->
+    </aside>
+    <!-- Barra lateral FIN -->
+    <!-- Línea horizontal a modo de separación. -->
+    <hr />
+    <!-- Pie de página INICIO -->
+    <footer>
+      <!-- Encabezado de 6º nivel a modo de pie de página. -->
+      <h6>Todos los derechos reservados - Víctor Luis Glaría Abril &copy;</h6>
+    </footer>
+    <!-- Pie de página FIN -->
+    <!--
+    Antiguamente, todas estas "divisiones", se hacían con [<div></div>], que es el contenedor "genérico".
+    -->
+  </body>
+  <!-- body FIN -->
+</html>

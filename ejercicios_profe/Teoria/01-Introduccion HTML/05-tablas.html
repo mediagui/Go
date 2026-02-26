@@ -1,0 +1,114 @@
+<!-- Indico que este documento es HTML5. -->
+<!doctype html>
+<!-- Inicio del documento HTML, especificando el idioma (español). -->
+<html>
+  <!-- Head INICIO -->
+  <head>
+    <!-- Estipulo la codificación de caracteres (utf-8). -->
+    <meta charset="utf-8" />
+    <!-- Estipulo que el diseño se adapte a distintos tamaños de pantalla. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Estipulo el título que aparecerá en la pestaña del navegador. -->
+    <title>Tablas HTML</title>
+  </head>
+  <!-- Head FIN -->
+  <!-- Cuerpo de la página INCIO -->
+  <body>
+    <!-- Cabecera INICIO -->
+    <header>
+      <!-- Encabezao de 1er nivel. -->
+      <h1>Tablas en HTML</h1>
+    </header>
+    <!-- Cabecera FIN -->
+    <!-- Contenido principal INICIO -->
+    <main>
+      <!--
+      Para crear una tabla, utilizamos la etiqueta [<table></table>]. Dentro de esta etiqueta, incluiremos todas las filas y columnas que contendrá nuestra tabla.
+
+      A "nivel semántico" es bueno estipular el atributo [symmary=""], para dar una pequeña explicación sobre la tabla.
+
+      Para aplicar un borde, sin utilizar CSS, utilizaremos el atributo [border=""].
+
+      Para crear una fila, utilizar la etiqueta [<tr></tr>].
+
+      Para crear una "celda de encabezado", utilizaremos la etiqueta [<th></th>]
+
+      Para crear una "celda normal", utilizaremos la etiqueta [<td></td>].
+
+      También podemos estructurar la tabla, al igual que hacemos con el documento HTML, con las siguientes secciones:
+
+      [<thead></thead>] → Cabecera de la tabla.
+      [<tbody></tbody>] → Cuerpo de la tabla.
+      [<tfoot></tfoot>] → Pie de la tabla.
+
+      Puedo utilizar la etiqueta [<caption></caption>], para indicar un título visible para la tabla.
+      -->
+      <table border="8" summary="Películas Favoritas">
+        <!-- Título de la tabla. -->
+        <caption>
+          Mis Películas Favoritas
+        </caption>
+        <!-- Cabecera de la tabla INICIO -->
+        <thead>
+          <!-- FILA UNO -->
+          <tr>
+            <!-- Indico las cabeceras de la tabla -->
+            <th>Título</th>
+            <th>Género</th>
+            <th>Año</th>
+          </tr>
+        </thead>
+        <!-- Cabecera de la tabla FIN -->
+        <!-- Cuerpo de la tabla INICIO -->
+        <tbody>
+          <!-- Fila DOS -->
+          <tr>
+            <td>El Señor de los Anillos</td>
+            <td>Aventuras</td>
+            <td>2004</td>
+          </tr>
+          <!-- Fila TRES -->
+          <tr>
+            <td>Joker</td>
+            <td>Drama</td>
+            <td>2019</td>
+          </tr>
+          <!-- Fila CUATRO -->
+          <tr>
+            <td>La Roca</td>
+            <!-- En este caso, quiero que una celda ocupe 2 o más columnas, por lo que utilizaré el atributo [colspan=""] -->
+            <td colspan="2">Acción</td>
+          </tr>
+          <!-- Fila CINCO -->
+          <tr>
+            <td>Kárate a Muerte en Bangkok</td>
+            <!-- De igual forma, también puedo hacer que una celda ocupe dos filas, con el atributo [rowspan=""] -->
+            <td colspan="2" rowspan="2">Artes Marciales</td>
+          </tr>
+          <!-- Fila SEIS -->
+          <tr>
+            <td>Ip Man</td>
+          </tr>
+        </tbody>
+        <!-- Cuerpo de la tabla FIN -->
+        <!-- Pie de la tabla INICIO -->
+        <tfoot>
+          <tr>
+            <!-- Indico que la celda ocupe 3 columnas. -->
+            <td colspan="3">Curso Repaso HTML Víctor Luis Glaría Abril &copy;</td>
+          </tr>
+        </tfoot>
+        <!-- Pie de la tabla FIN -->
+      </table>
+    </main>
+    <!-- Contenido principal FIN -->
+    <!-- Pie INICIO -->
+    <footer>
+      <!-- Encabezado de 6º nivel a modo de pie de página. -->
+      <h6>Todos los derechos reservados - Víctor Luis Glaría Abril &copy;</h6>
+    </footer>
+    <!-- Pie FIN -->
+  </body>
+  <!-- Cuerpo de la página FIN -->
+</html>
+<!-- Documento HTML FIN -->

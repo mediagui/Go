@@ -1,0 +1,121 @@
+<!-- Indico que este documento es HTML5. -->
+<!doctype html>
+<!-- Inicio del documento HTML, especificando el idioma (español). -->
+<html>
+  <!-- Head INICIO -->
+  <head>
+    <!-- Estipulo la codificación de caracteres (utf-8). -->
+    <meta charset="utf-8" />
+    <!-- Estipulo que el diseño se adapte a distintos tamaños de pantalla. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Estipulo el título que aparecerá en la pestaña del navegador. -->
+    <title>Listas en HTML</title>
+  </head>
+  <!-- Head FIN -->
+  <!-- Cuerpo de la página INCIO -->
+  <body>
+    <!-- Cabecera INICIO -->
+    <header>
+      <!-- Encabezado de nivel 1 -->
+      <h1>Listas en HTML</h1>
+    </header>
+    <!-- Cabecera FIN -->
+    <!-- Contenido principal INICIO -->
+    <main>
+      <!--
+      ##################
+      #LISTAS ORDENADAS#  
+      ##################
+
+      Se definen con la etiqueta[<ol></ol>], que viene de "Order List".
+      Vamos a ver que está "ordenada", puesto que tienen una viñeta que sigue un orden (1,2,3; a,b,c; etc...)
+      -->
+      <h2>Listas Ordenadas.</h2>
+      <!-- Lista Ordenada INICIO -->
+      <ol>
+        <!-- Inserto 3 elementos en la lista con la etiqueta [<li></li>], que viene de "list item" -->
+        <li>Monster Hunter</li>
+        <li>Call of Duty</li>
+        <li>Sly Cooper</li>
+      </ol>
+      <!-- Lista Ordenada FIN -->
+      <!--
+      #####################
+      #LISTAS DESORDENADAS#  
+      #####################
+
+      Se definen con la etiqueta [<ul></ul>], que viene "unorder list".
+      Vemos que es una lista desordenada, puesto que tiene una viñeta en forma de símbolo.
+      -->
+      <h2>Listas Desordenadas</h2>
+      <!-- Lista Desordenada INICIO -->
+      <ul>
+        <li>Spyro</li>
+        <li>El Príncipe de Persia</li>
+        <li>God of War</li>
+      </ul>
+      <!-- Lista Desordenada FIN -->
+
+      <!--
+      ################
+      #LISTAS ANIDADA#  
+      ################
+      Es una combinación de ambas listas.
+      -->
+      <h2>Listas Anidadas.</h2>
+      <!-- Creo una lista desordenada, donde "anidadré" una lista ordenada. -->
+      <ul>
+        <!-- Para anidad una lista dentro de otra, simplemente pongo la sublista deseada, dentro del elemento [<li></li>] -->
+        <li>
+          Acción
+          <!-- Inserto una lista desordenada, cambiando el tipo de viñeta, con el atributo [type=""]. -->
+          <ul type="square">
+            <li>Mercenarios</li>
+            <li>Rambo</li>
+            <li>Misión Imposible</li>
+          </ul>
+        </li>
+        <li>
+          Románticas
+          <ul>
+            La Bella y la Bestia.
+            <!-- Anido una lista ordenada. -->
+            <li>
+              Rambo
+              <ol type="I">
+                <li>Rambo I</li>
+                <li>Rambo II</li>
+                <li>Rambo III</li>
+              </ol>
+            </li>
+            <li>Rocky</li>
+          </ul>
+        </li>
+        <li>
+          Terror
+          <ul>
+            <li>Asesinato en Elmo Street</li>
+            <li>
+              Rambo
+              <ul type="I">
+                <li>Rambo I</li>
+                <li>Rambo II</li>
+                <li>Rambo III</li>
+              </ul>
+            </li>
+            <li>Rocky</li>
+          </ul>
+        </li>
+      </ul>
+    </main>
+    <!-- Contenido principal FIN -->
+    <!-- Pie INICIO -->
+    <footer>
+      <!-- Encabezado de 6º nivel a modo de pie de página. -->
+      <h6>Todos los derechos reservados - Víctor Luis Glaría Abril &copy;</h6>
+    </footer>
+    <!-- Pie FIN -->
+  </body>
+  <!-- Cuerpo de la página FIN -->
+</html>
+<!-- Documento HTML FIN -->

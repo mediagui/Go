@@ -1,0 +1,111 @@
+<!--
+Esto es un comentario, esto es código que el compilador va a ignorar (un atajo para poner un comentario es [ctrl+ç]).
+
+Una etiqueta es un elemento el HTML que tiene la siguiente estructura:
+
+<nombreEtiqueta>CONTENIDO / TEXTO / DATOS</nombreEtiqueta>
+
+También existen etiquetas que se "cierran automaticamente" (autocierre), que se estructuran de la siguiente manera y no tienen contenido.
+
+<etiqueta_sin_contenido />
+
+Una página HTML, se componen de los siguientes elementos:
+
+→ El primer elemento siempre en una página HTML, es el [<!DOCTYPE html>] que indica el tipo de html que se va a utilizar.
+
+→ La etiqueta [<html></html>] es la que contendrá todos los elementos de nuestra aplicación web.
+
+En la página:
+
+→ https://developer.mozilla.org/es/docs/Web/HTML/Reference/Elements
+
+Se puede encontrar más información sobre las distintas etiquetas.
+-->
+<!-- Indico la versión de HTML que voy a utilizar. -->
+<!doctype html>
+<!-- Indico el bloque en el que voy a empezar a utilizar mi código HTML y el idioma a utilizar. -->
+<html lang="es">
+  <!-- La etiqueta [<head></head>], se utiliza para indicar todo aquello que no será visible en un navegador, a esto se le conoce como "metadatos". Básicamente es información que no va a ser directamente útil para el usuario, pero si para el navegador. -->
+  <head>
+    <!-- La etiqueta [<meta/>] ofrece información útil para el navegador, codificación de caracteres, etc... En este caso, con el atributo [charset=""], especificamos la codificación de caracteres. -->
+    <meta charset="utf-8" />
+    <!-- Puedo utilizar otra etiqueta [<meta/>], para hacer una pequeña descripción de la página. -->
+    <meta name="description" content="Esta es mi primera web HTML5" />
+    <!-- Con la etiqueta [<title></title>], indicamos el título de la página, que será visible en la pestaña del navegador. -->
+    <title>Repaso HTML - Curso GO</title>
+  </head>
+  <!-- En la etiqueta [<body></body>], introduciremos el contenido que se verá en la página como tal. -->
+  <body>
+    <!-- Con la etiqueta [<h1></h1>], puedo imprimir un encabezado de nivel 1. -->
+    <h1>Encabezado de nivel 1</h1>
+    <!-- Inserto un párrafo con la etiqueta [<p></p>]. -->
+    <p>Soy un párrafo.</p>
+    <!-- Inserto una línea horizontal a modo de división con la etiqueta [<hr/>]. -->
+    <hr />
+    <!--
+    #############
+    #ENCABEZADOS#
+    #############
+    
+    Se utilizan con la etiqueta [<hn></hn>], donde "n", es el nivel del encabezado a imprimir (h1, h2, h3, h4, h5 y h6). Cuanto mayor sea el número, menos "importancia" tendrá el encabezado.
+    -->
+    <!-- Inserto varios encabezados con distintos niveles. -->
+    <h1>Encabezado de nivel 1</h1>
+    <h2>Encabezado de nivel 2</h2>
+    <h3>Encabezado de nivel 3</h3>
+    <h4>Encabezado de nivel 4</h4>
+    <h5>Encabezado de nivel 5</h5>
+    <h6>Encabezado de nivel 6</h6>
+
+    <!-- Inserto una línea horizontal a modo de separador. -->
+    <hr />
+
+    <!--
+    ##########
+    #PÁRRAFOS#
+    ##########
+
+    Se insertan con la etiqueta [<p></p>] y poniendo el texto deseado entre medias.
+
+    Para que haya distinción entre un párrafo y otro, hace falta cerrar y abrir la etiqueta nuevamente, puesto que los saltos de línea se ignoran.
+
+    Para insertar varios espacios en nuestros párrafos, utilizaremos el código de unicode: &nbsp;
+
+    Para poner el símbolo de copy right, utilizaremos el código de unicode: &copy; ó &COPY;
+
+    Para poner el texto en negrita, utilizaremos la etiqueta: [<strong></strong>]
+
+    Para poner el texto en cursiva, utilizaremos la etiqueta: [<em></em>]
+
+    La etiqueta [<span></span>] es una "etiqueta genérica", se utiliza para aplicar estilos un fragmento de texto o agrupar varios elementos en línea.
+    -->
+    <p>
+      Lorem, &nbsp; &nbsp; &nbsp; &copy; ipsum dolor sit amet consectetur,
+      adipisicing elit. Eligendi, odit ex voluptates laborum sit doloremque
+      nesciunt temporibus consequuntur eius porro.
+    </p>
+    <!-- Si quiero insertar saltos de línea, utilizo la etiqueta [<br/>] -->
+    <!-- Inserto varios saltos de línea. -->
+    <br />
+    <br />
+    <br />
+    <!--
+    Inserto un párrafo con un trozo de texto en negrita, otro en cursiva y otro en cursiva con la etiqueta [<i></i>].
+
+    Utilizo la etiqueta [<span></span>], para aplicar estilos al fragmento de texto deseado (en esto ahondaremos más cuando veamos CSS).
+
+    Con la etiqueta [<blockquote></blockquote>], podemos indicar una cita. Podemos indicar al navegador de dónde hemos extraido la cita, utilizando el atributo [cite=""]. Con el atributo [title=""], podemos indicar un título, que se verá cuando coloquemos el cursor del ratón encima.
+    -->
+    <p>
+      <em>Lorem ipsum dolor</em>, <strong>sit amet</strong>
+      <span class="p_span--textoRojo" style="color: violet">consectetur </span>
+      <i>adipisicing elit</i>. Consectetur reprehenderit quos enim ullam eos.
+      <blockquote title="Del latín: La zorra muda el pelo, pero no las costumbres." cite="https://es.wikipedia.org/wiki/Lat%C3%ADn">Vulpes pilum mutan, non mores</blockquote>
+    </p>
+    <!--
+    Inserto un párrafo con un trozo de texto en negrita y otro en cursiva. También, un trozo de texto en negrita y en cursiva al mismo tiempo.
+    -->
+    <p><em>Lorem, ipsum</em> dolor sit amet <strong>consectetur</strong> adipisicing elit. Eveniet beatae eligendi mollitia accusamus quas pariatur! Quia iure explicabo quaerat nulla dolorum, dolores <strong><em>magnam nostrum alias illum</em></strong> ipsum incidunt cumque aliquid.
+    Ab velit autem reiciendis quas facilis ad nihil similique aut, asperiores aliquid deserunt animi tenetur ipsa blanditiis. Incidunt deleniti voluptatum porro minus ex delectus nemo odit, velit unde quae. A?</p>
+  </body>
+</html>
