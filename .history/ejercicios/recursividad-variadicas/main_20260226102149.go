@@ -22,8 +22,6 @@ func main() {
 
 	usoDeFuncAnonima()
 
-	usoDeFuncionVariadicaYAnonima()
-
 }
 
 // Calculo del factorial usando recursividad
@@ -60,14 +58,14 @@ func usoDeFuncAnonima() {
 
 }
 
-func usoDeFuncionVariadicaYAnonima() {
+func usoDeFuncionVariadica() {
 
 	func(numeros ...int) {
 		suma := 0
 		for _, n := range numeros {
 			suma += n
 		}
-		println("Suma de los números [1, 2, 3, 4, 5]:", suma)
+		println("Suma de los números:", suma)
 	}(1, 2, 3, 4, 5)
 
 }

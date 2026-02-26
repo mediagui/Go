@@ -18,11 +18,10 @@ func main() {
 		println("Error calculando factorial:", err)
 		return
 	}
+
 	println("Resultado:", valor)
 
 	usoDeFuncAnonima()
-
-	usoDeFuncionVariadicaYAnonima()
 
 }
 
@@ -57,17 +56,5 @@ func usoDeFuncAnonima() {
 	// Llamada a la función anónima
 	resultado1 := cuadrado(5)
 	println("Cuadrado de 5:", resultado1)
-
-}
-
-func usoDeFuncionVariadicaYAnonima() {
-
-	func(numeros ...int) {
-		suma := 0
-		for _, n := range numeros {
-			suma += n
-		}
-		println("Suma de los números [1, 2, 3, 4, 5]:", suma)
-	}(1, 2, 3, 4, 5)
 
 }
