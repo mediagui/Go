@@ -64,7 +64,7 @@ func CalculoDeFactorial() {
 	println("Calculamos el factorial de 10.000.")
 	valor, err := factorial(10_000)
 	if err != nil {
-		println("Error calculando factorial:", err.Error())
+		println("Error calculando factorial:", err)
 		return
 	}
 

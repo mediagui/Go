@@ -1,7 +1,6 @@
 package internal
 
 import (
-	"fmt"
 	"math"
 	"runtime"
 )
@@ -23,8 +22,9 @@ func factorial(numero int) (int, error) {
 	}
 
 	if !canCalculateFactorial(numero) {
-		return 0, fmt.Errorf("Número demasiado grande para calcular factorial en esta arquitectura")
+		panic("Número demasiado grande para calcular factorial en esta arquitectura")
 	}
+
 	result, err := factorial(numero - 1)
 	if err != nil {
 		return 0, err
@@ -64,7 +64,7 @@ func CalculoDeFactorial() {
 	println("Calculamos el factorial de 10.000.")
 	valor, err := factorial(10_000)
 	if err != nil {
-		println("Error calculando factorial:", err.Error())
+		println("Error calculando factorial:", err)
 		return
 	}
 

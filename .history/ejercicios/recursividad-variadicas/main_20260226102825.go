@@ -8,14 +8,10 @@
 
 package main
 
-import "recursividad/internal"
-
 func main() {
 
-	internal.CalculoDeFactorial()
+	usoDeFuncAnonima()
 
-	internal.UsoDeFuncAnonima()
-
-	internal.UsoDeFuncionVariadicaYAnonima()
+	usoDeFuncionVariadicaYAnonima()
 
 }
