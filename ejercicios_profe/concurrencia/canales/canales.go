@@ -1,6 +1,10 @@
 package concurrencia
 
-import "fmt"
+import (
+	"fmt"
+	"net/http"
+	"time"
+)
 
 /*
 #########
@@ -17,14 +21,55 @@ Donde [tipoDato] especifica el tipo de datos que se enviarán a través del cana
 
 func MostrarCanales() {
 
-	// Creo un canal de tipo entero.
-	ch := make(chan int)
+	inicio := time.Now()
 
-	// Enviar valor a través del canal.
-	ch <- 10
+	apis := []string{
+		"https://management.azure.com",
+		"https://dev.azure.com",
+		"https://api.github.com",
+		"https://outlook.office.com",
+		"https://api.somewhereintheinternet.com",
+		"https://graph.microsoft.com",
+	}
 
-	// Recibir un valor del canal.
-	valor := <-ch
+	// Canal para almacenar cada respuesta.
+	ch := make(chan string)
+	// Bucle para verificar el estado de cada api.
+	for _, api := range apis {
+		// Añado una [goroutine], para ello es necesaria la palabra [go]
+		go comprobarAPI(api, ch)
+		// fmt.Printf(<-ch)
+	}
 
-	fmt.Println(valor)
+	// Imprimo el contenido del canal
+	// fmt.Printf(<-ch)
+	// fmt.Printf(<-ch)
+	// fmt.Printf(<-ch)
+	// fmt.Printf(<-ch)
+	// fmt.Printf(<-ch)
+	// fmt.Printf(<-ch)
+
+	fmt.Println(`
+	Con bucle for
+	`)
+
+	// Utilizo un bucle for para mostrar todas las apis.
+	for i := 0; i < len(apis); i++ {
+		fmt.Print(<-ch)
+	}
+
+	// Hago que el programa espere x segundos antes de finalizar.
+	time.Sleep(2 * time.Second)
+
+	tiempoFinal := time.Since(inicio)
+	fmt.Printf("¡LISTO! Ha tardado %v segundos\n", tiempoFinal.Seconds())
+}
+
+func comprobarAPI(api string, ch chan string) {
+	if _, err := http.Get(api); err != nil {
+		ch <- fmt.Sprintf("Error: ¡%s está caído!\n", api)
+		return
+	}
+
+	ch <- fmt.Sprintf("EXITO ¡%s está en funcionamiento!\n", api)
 }
