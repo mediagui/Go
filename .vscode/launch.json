@@ -10,22 +10,22 @@
             "request": "launch",
             "mode": "auto",
             "program": "${fileDirname}",
-            "console": "integratedTerminal",
-            "args": [
-                "-id",
-                "3"
-            ]
+            "console": "integratedTerminal"
         },
         {
-            "name": "Launch File with param",
+            "name": "Launch File with params",
             "type": "go",
             "request": "launch",
             "mode": "auto",
             "program": "${file}",
             "console": "integratedTerminal",
             "args": [
-                "-id",
-                "3"
+                "-combo",
+                "5",
+                "-mult",
+                "2",
+                "-puntos",
+                "100, 200, 300"
             ]
         }
     ]
