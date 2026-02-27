@@ -161,6 +161,7 @@ func guardaEnArchivo(ev [5]Acceso, m *sync.Mutex) {
 			ev[i].Riesgo,
 		)
 
+
 		m.Lock() //Bloqueamos el acceso al fichero para evitar inconsistencias
 		f.WriteString(registro)
 		log.Printf("Guardando registro %s", registro)
